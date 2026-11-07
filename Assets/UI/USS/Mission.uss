@@ -1,0 +1,30 @@
+.mission-root {
+    flex-grow: 1;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    flex-direction: column;
+}
+
+.mission-title {
+    unity-font-style: bold;
+    font-size: 84px;
+    margin-bottom: 10px;
+}
+
+.mission-row {
+    flex-direction: row;
+    margin-bottom: 4px;
+    font-size: 42px;
+    justify-content: space-between;
+}
+
+.mission-field-label {
+    min-width: 140px;
+}
+
+.mission-accept-button {
+    margin-top: 16px;
+    font-size: 30px;
+}
