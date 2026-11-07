@@ -1,6 +1,6 @@
-<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1; padding-left: 12px; padding-right: 12px; padding-top: 12px; padding-bottom: 12px; flex-direction: column;">
-        <ui:ScrollView name="MissionsScrollView" style="flex-grow: 1;">
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False" authoring-id="-1123596664">
+    <ui:VisualElement style="flex-grow: 1; padding-left: 12px; padding-right: 12px; padding-top: 12px; padding-bottom: 12px; flex-direction: column; align-items: flex-start;">
+        <ui:ScrollView name="MissionsScrollView" style="flex-grow: 0; align-self: flex-start;">
             <ui:VisualElement name="MissionsContainer" style="flex-direction: column; flex-grow: 1;"/>
         </ui:ScrollView>
     </ui:VisualElement>

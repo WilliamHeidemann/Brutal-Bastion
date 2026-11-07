@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/USS/Mission.uss?fileID=7433441132597879392&amp;guid=4f1283c5758274f448b1a935dd98ffb2&amp;type=3#Mission"/>
-    <ui:VisualElement class="mission-root">
+    <ui:VisualElement class="mission-root" style="flex-grow: 0; align-self: flex-start;">
         <ui:Label text="Mission" class="mission-title"/>
         <ui:VisualElement class="mission-row">
             <ui:Label text="DaysToComplete" class="mission-field-label"/>
@@ -22,6 +22,9 @@
             <ui:Label text="HealthPenalty" class="mission-field-label"/>
             <ui:Label name="HealthPenaltyValue" text="0"/>
         </ui:VisualElement>
-        <ui:Button text="Accept" name="Accept" class="mission-accept-button"/>
+        <ui:VisualElement class="mission-row">
+            <ui:Button text="Accept" name="Accept" class="mission-button"/>
+            <ui:Button text="Decline" name="Decline" class="mission-button"/>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

@@ -5,6 +5,7 @@
     padding-top: 12px;
     padding-bottom: 12px;
     flex-direction: column;
+    max-width: 500px;
 }
 
 .mission-title {
@@ -24,7 +25,8 @@
     min-width: 140px;
 }
 
-.mission-accept-button {
+.mission-button {
     margin-top: 16px;
     font-size: 30px;
+    flex-grow: 1;
 }
