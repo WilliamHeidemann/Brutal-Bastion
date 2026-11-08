@@ -17,3 +17,6 @@ A modifier may be present in one or all zones
 Tool: 
 For select between option make highlighted 
 | xxxx | yyyy | zzzz | 
+
+Tool for creating exact modifier
+Tool for creating modifier generators

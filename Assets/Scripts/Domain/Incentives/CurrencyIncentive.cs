@@ -3,38 +3,36 @@ using UnityEngine;
 
 namespace Domain.Incentives
 {
-    public class CurrencyIncentive
+    public class CurrencyIncentive : Incentive
     {
-        private readonly int _amount;
-        private readonly Currency _currency;
-        public int Amount => _amount;
-        public Currency Currency => _currency;
+        public int Amount { get; }
+        public Currency Currency { get; }
 
         public CurrencyIncentive(int amount, Currency currency)
         {
-            _amount = amount;
-            _currency = currency;
+            Amount = amount;
+            Currency = currency;
         }
 
-        public void Modify(GameState gameState)
+        public override void Modify(GameState gameState)
         {
-            switch (_currency)
+            switch (Currency)
             {
                 case Currency.Lives:
-                    gameState.Lives = Mathf.Max(gameState.Lives + _amount, 0);
+                    gameState.Lives = Mathf.Max(gameState.Lives + Amount, 0);
                     break;
                 case Currency.ArmySize:
-                    gameState.ArmySize = Mathf.Max(gameState.ArmySize + _amount, 0);
+                    gameState.ArmySize = Mathf.Max(gameState.ArmySize + Amount, 0);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
-        public string GetDescription() => _currency switch
+        public override string GetDescription() => Currency switch
         {
-            Currency.Lives => _amount > 0 ? $"Gain {_amount} life." : $"Lose {Mathf.Abs(_amount)} life.",
-            Currency.ArmySize => _amount > 0 ? $"Gain {_amount} army size." : $"Lose {Mathf.Abs(_amount)} army size.",
+            Currency.Lives => Amount > 0 ? $"Gain {Amount} life." : $"Lose {Mathf.Abs(Amount)} life.",
+            Currency.ArmySize => Amount > 0 ? $"Gain {Amount} army size." : $"Lose {Mathf.Abs(Amount)} army size.",
             _ => string.Empty
         };
     }
