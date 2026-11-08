@@ -6,8 +6,8 @@ namespace Domain
 {
     public class GameState
     {
-        public int ArmySize;
-        public int Lives;
+        public int ArmySize = 1000;
+        public int Lives = 3;
         public readonly HashSet<IncentiveModifier> Modifiers = new();
     }
 }

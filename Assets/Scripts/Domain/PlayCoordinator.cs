@@ -39,9 +39,9 @@ namespace Domain
         public void PassDay()
         {
             PayForAcceptedQuests();
-            
+
             ApplyRewards();
-            
+
             ApplyPenalties();
 
             if (_gameState.Lives <= 0)
@@ -62,17 +62,18 @@ namespace Domain
                     .Where(vc => vc.TimeOfEffect == TimeOfEffect.OnPickUp)
                     .ToList();
 
-                float lifeCost = pickUpChanges
+                float lifeCostBonus = pickUpChanges
                     .Where(vc => vc.Attribute == Attribute.Lives)
                     .Sum(vc => Bonus(vc, acceptedQuest.Requirement));
-                
-                _gameState.Lives = Mathf.Max(0, _gameState.Lives - (int)lifeCost);
 
-                float armyCost = pickUpChanges
+                _gameState.Lives = Mathf.Max(0, _gameState.Lives - (int)lifeCostBonus);
+
+                float armyCostBonus = pickUpChanges
                     .Where(vc => vc.Attribute == Attribute.ArmySize)
                     .Sum(vc => Bonus(vc, acceptedQuest.Requirement));
 
-                _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize - (int)armyCost);
+                _gameState.ArmySize =
+                    Mathf.Max(0, _gameState.ArmySize - (int)armyCostBonus - acceptedQuest.Requirement);
 
                 _activeQuests.Add(acceptedQuest);
             }
@@ -92,6 +93,7 @@ namespace Domain
         {
             foreach (Quest completedQuest in _activeQuests.PassDay())
             {
+                _gameState.ArmySize += completedQuest.Requirement;
                 completedQuest.Reward.Modify(_gameState);
 
                 if (completedQuest.Reward is CurrencyIncentive currencyIncentive)
@@ -124,7 +126,8 @@ namespace Domain
                 .Where(vc => vc.Attribute == Attribute.ArmySize)
                 .Sum(vc => Bonus(vc, currencyIncentive.Amount));
 
-            _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize + (int)armyBonus);        }
+            _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize + (int)armyBonus);
+        }
 
         private void ApplyPenalties()
         {
@@ -164,17 +167,17 @@ namespace Domain
 
             _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize + (int)armyBonus);
         }
-        
+
         private void TickModifiers()
         {
             List<IncentiveModifier> expired = new();
-            
+
             foreach (IncentiveModifier modifier in _gameState.Modifiers)
             {
                 if (modifier.Duration is LimitedDuration limitedDuration)
                 {
                     limitedDuration.TurnsLeft -= 1;
-                    
+
                     if (limitedDuration.TurnsLeft <= 0)
                     {
                         expired.Add(modifier);
