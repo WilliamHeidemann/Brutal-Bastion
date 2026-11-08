@@ -24,26 +24,41 @@ namespace Domain
 
         public void PassDay()
         {
-            foreach (Quest declinedQuest in _offeredQuests.DeclinedQuests)
-            {
-                declinedQuest.Penalty.Modify(_gameState);
-            }
+            PayForAcceptedQuests();
+            
+            ApplyRewards();
+            
+            ApplyPenalties();
 
-            foreach (Quest completedQuest in _activeQuests.PassDay())
+            if (_gameState.Lives <= 0)
             {
-                completedQuest.Reward.Modify(_gameState);
+                OnOutOfLives?.Invoke();
             }
-
+        }
+        
+        private void PayForAcceptedQuests()
+        {
             foreach (Quest acceptedQuest in _offeredQuests.AcceptedQuests)
             {
                 _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize - acceptedQuest.Requirement);
 
                 _activeQuests.Add(acceptedQuest);
             }
+        }
 
-            if (_gameState.Lives <= 0)
+        private void ApplyRewards()
+        {
+            foreach (Quest completedQuest in _activeQuests.PassDay())
             {
-                OnOutOfLives?.Invoke();
+                completedQuest.Reward.Modify(_gameState);
+            }
+        }
+
+        private void ApplyPenalties()
+        {
+            foreach (Quest declinedQuest in _offeredQuests.DeclinedQuests)
+            {
+                declinedQuest.Penalty.Modify(_gameState);
             }
         }
     }
