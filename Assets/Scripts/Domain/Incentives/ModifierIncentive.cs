@@ -8,8 +8,13 @@ namespace Domain.Incentives
 {
     public class ModifierIncentive : Incentive
     {
-        IncentiveModifier Modifier { get; }
-        
+        private IncentiveModifier Modifier { get; }
+
+        public ModifierIncentive(IncentiveModifier modifier)
+        {
+            Modifier = modifier;
+        }
+
         public override void Modify(GameState gameState)
         {
             gameState.Modifiers.Add(Modifier);
@@ -82,7 +87,8 @@ namespace Domain.Incentives
         {
             return duration switch
             {
-                LimitedDuration limited => $"Lasts {limited.TurnsLeft} turn{(limited.TurnsLeft == 1 ? string.Empty : "s")}.",
+                LimitedDuration limited =>
+                    $"Lasts {limited.TurnsLeft} turn{(limited.TurnsLeft == 1 ? string.Empty : "s")}.",
                 InfiniteDuration => "Lasts indefinitely.",
                 _ => "Lasts for an unknown duration."
             };

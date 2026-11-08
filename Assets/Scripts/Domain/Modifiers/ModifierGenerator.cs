@@ -5,9 +5,9 @@ using Random = UnityEngine.Random;
 
 namespace Domain.Modifiers
 {
-    public class ModifierGenerator
+    public static class ModifierGenerator
     {
-        public IncentiveModifier Generate()
+        public static IncentiveModifier Generate()
         {
             return new IncentiveModifier
             {

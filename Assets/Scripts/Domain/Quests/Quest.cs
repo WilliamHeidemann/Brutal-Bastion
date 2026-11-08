@@ -6,8 +6,8 @@ namespace Domain.Quests
     {
         public int DaysToComplete;
         public int Requirement;
-        public CurrencyIncentive Reward;
-        public CurrencyIncentive Penalty;
+        public Incentive Reward;
+        public Incentive Penalty;
         public Region Region;
     }
 }

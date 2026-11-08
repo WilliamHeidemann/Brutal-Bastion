@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Domain.Incentives;
 using Domain.Modifiers;
 using Domain.Quests;
 using UnityEngine;
@@ -77,12 +78,12 @@ namespace Domain
             }
         }
 
-        private static float Bonus(ValueChange valueChange, int originalValue)
+        private static float Bonus(ValueChange valueChange, int baseAmount)
         {
             return valueChange.ChangeType switch
             {
                 ChangeType.Value => valueChange.Value,
-                ChangeType.Percentage => 1f / valueChange.Value * originalValue,
+                ChangeType.Percentage => 1f / valueChange.Value * baseAmount,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -93,25 +94,37 @@ namespace Domain
             {
                 completedQuest.Reward.Modify(_gameState);
 
-                List<ValueChange> rewardChanges = _gameState.Modifiers
-                    .Where(m => m.ToAffect.Contains(completedQuest.Region))
-                    .SelectMany(m => m.Changes)
-                    .Where(vc => vc.TimeOfEffect == TimeOfEffect.OnReward)
-                    .ToList();
+                if (completedQuest.Reward is CurrencyIncentive currencyIncentive)
+                {
+                    GainBonuses(currencyIncentive, completedQuest);
+                }
 
-                float lifeBonus = rewardChanges
-                    .Where(vc => vc.Attribute == Attribute.Lives)
-                    .Sum(vc => Bonus(vc, completedQuest.Reward.Amount));
-
-                _gameState.Lives = Mathf.Max(0, _gameState.Lives + (int)lifeBonus);
-
-                float armyBonus = rewardChanges
-                    .Where(vc => vc.Attribute == Attribute.ArmySize)
-                    .Sum(vc => Bonus(vc, completedQuest.Reward.Amount));
-
-                _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize + (int)armyBonus);
+                if (completedQuest.Reward is ModifierIncentive modifierIncentive)
+                {
+                    modifierIncentive.Modify(_gameState);
+                }
             }
         }
+
+        private void GainBonuses(CurrencyIncentive currencyIncentive, Quest completedQuest)
+        {
+            List<ValueChange> rewardChanges = _gameState.Modifiers
+                .Where(m => m.ToAffect.Contains(completedQuest.Region))
+                .SelectMany(m => m.Changes)
+                .Where(vc => vc.TimeOfEffect == TimeOfEffect.OnReward)
+                .ToList();
+
+            float lifeBonus = rewardChanges
+                .Where(vc => vc.Attribute == Attribute.Lives)
+                .Sum(vc => Bonus(vc, currencyIncentive.Amount));
+
+            _gameState.Lives = Mathf.Max(0, _gameState.Lives + (int)lifeBonus);
+
+            float armyBonus = rewardChanges
+                .Where(vc => vc.Attribute == Attribute.ArmySize)
+                .Sum(vc => Bonus(vc, currencyIncentive.Amount));
+
+            _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize + (int)armyBonus);        }
 
         private void ApplyPenalties()
         {
@@ -119,24 +132,37 @@ namespace Domain
             {
                 declinedQuest.Penalty.Modify(_gameState);
 
-                List<ValueChange> penaltyChanges = _gameState.Modifiers
-                    .Where(m => m.ToAffect.Contains(declinedQuest.Region))
-                    .SelectMany(m => m.Changes)
-                    .Where(vc => vc.TimeOfEffect == TimeOfEffect.OnPenalty)
-                    .ToList();
+                if (declinedQuest.Penalty is CurrencyIncentive currencyIncentive)
+                {
+                    GainPenaltyBonuses(currencyIncentive, declinedQuest);
+                }
 
-                float lifeBonus = penaltyChanges
-                    .Where(vc => vc.Attribute == Attribute.Lives)
-                    .Sum(vc => Bonus(vc, declinedQuest.Penalty.Amount));
-
-                _gameState.Lives = Mathf.Max(0, _gameState.Lives + (int)lifeBonus);
-
-                float armyBonus = penaltyChanges
-                    .Where(vc => vc.Attribute == Attribute.ArmySize)
-                    .Sum(vc => Bonus(vc, declinedQuest.Penalty.Amount));
-
-                _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize + (int)armyBonus);
+                if (declinedQuest.Penalty is ModifierIncentive modifierIncentive)
+                {
+                    modifierIncentive.Modify(_gameState);
+                }
             }
+        }
+
+        private void GainPenaltyBonuses(CurrencyIncentive currencyIncentive, Quest declinedQuest)
+        {
+            List<ValueChange> penaltyChanges = _gameState.Modifiers
+                .Where(m => m.ToAffect.Contains(declinedQuest.Region))
+                .SelectMany(m => m.Changes)
+                .Where(vc => vc.TimeOfEffect == TimeOfEffect.OnPenalty)
+                .ToList();
+
+            float lifeBonus = penaltyChanges
+                .Where(vc => vc.Attribute == Attribute.Lives)
+                .Sum(vc => Bonus(vc, currencyIncentive.Amount));
+
+            _gameState.Lives = Mathf.Max(0, _gameState.Lives + (int)lifeBonus);
+
+            float armyBonus = penaltyChanges
+                .Where(vc => vc.Attribute == Attribute.ArmySize)
+                .Sum(vc => Bonus(vc, currencyIncentive.Amount));
+
+            _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize + (int)armyBonus);
         }
         
         private void TickModifiers()
