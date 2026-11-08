@@ -1,38 +1,49 @@
+using System;
 using Domain.Quests;
+using UnityEngine;
 
 namespace Domain
 {
     public class PlayCoordinator
     {
-        public readonly ActiveQuests activeQuests = new();
-        public readonly OfferedQuests offeredQuests = new();
-        public readonly GameState gameState = new();
+        private readonly ActiveQuests _activeQuests = new();
+        private readonly OfferedQuests _offeredQuests = new();
+        private readonly GameState _gameState = new();
+
+        public Action OnOutOfLives;
 
         public void Accept(Quest quest)
         {
-            offeredQuests.Accept(quest);
+            _offeredQuests.Accept(quest);
         }
 
         public void Decline(Quest quest)
         {
-            offeredQuests.Decline(quest);
+            _offeredQuests.Decline(quest);
         }
 
         public void PassDay()
         {
-            foreach (Quest declinedQuest in offeredQuests.DeclinedQuests)
+            foreach (Quest declinedQuest in _offeredQuests.DeclinedQuests)
             {
-                declinedQuest.Penalty.Modify(gameState);
+                declinedQuest.Penalty.Modify(_gameState);
             }
 
-            foreach (Quest completedQuest in activeQuests.PassDay())
+            foreach (Quest completedQuest in _activeQuests.PassDay())
             {
-                completedQuest.Reward.Modify(gameState);
+                completedQuest.Reward.Modify(_gameState);
             }
 
-            foreach (Quest acceptedQuest in offeredQuests.AcceptedQuests)
+            foreach (Quest acceptedQuest in _offeredQuests.AcceptedQuests)
             {
-                activeQuests.Add(acceptedQuest);
+                _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize - acceptedQuest.Requirement);
+
+                _activeQuests.Add(acceptedQuest);
+            }
+
+            if (_gameState.Lives <= 0)
+            {
+                OnOutOfLives?.Invoke();
             }
         }
     }

@@ -28,7 +28,9 @@ namespace Presentation
             questElement.Q<Label>("SizePenaltyValue").text = quest.Penalty.GetDescription();
 
             questElement.Q<Button>("Accept").clicked += 
-                () => _playManager.PlayCoordinator.offeredQuests.Add(quest);
+                () => _playManager.PlayCoordinator.Accept(quest);
+            questElement.Q<Button>("Decline").clicked += 
+                () => _playManager.PlayCoordinator.Decline(quest);
             
             _questsScrollView.Add(questElement);
         }
