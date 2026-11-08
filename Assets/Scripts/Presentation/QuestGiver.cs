@@ -11,10 +11,9 @@ namespace Presentation
 
         public void GiveQuests(int count)
         {
-            QuestGenerator questGenerator = new();
             for (int i = 0; i < count; i++)
             {
-                Quest quest = questGenerator.Generate();
+                Quest quest = QuestGenerator.Generate();
                 _questPresenter.AddQuest(quest);
             }
         }

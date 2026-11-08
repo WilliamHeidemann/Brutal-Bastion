@@ -5,7 +5,7 @@ namespace Domain.Quests
 {
     public class QuestGenerator
     {
-        public Quest Generate()
+        public static Quest Generate()
         {
             return new Quest
             {
