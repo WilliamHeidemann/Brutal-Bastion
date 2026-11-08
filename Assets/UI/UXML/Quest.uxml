@@ -15,12 +15,8 @@
             <ui:Label name="RewardValue" text="0"/>
         </ui:VisualElement>
         <ui:VisualElement class="quest-row">
-            <ui:Label text="SizePenalty" class="quest-field-label"/>
+            <ui:Label text="Penalty" class="quest-field-label"/>
             <ui:Label name="SizePenaltyValue" text="0"/>
-        </ui:VisualElement>
-        <ui:VisualElement class="quest-row">
-            <ui:Label text="HealthPenalty" class="quest-field-label"/>
-            <ui:Label name="HealthPenaltyValue" text="0"/>
         </ui:VisualElement>
         <ui:VisualElement class="quest-row">
             <ui:Button text="Accept" name="Accept" class="quest-button"/>

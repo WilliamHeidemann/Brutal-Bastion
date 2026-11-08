@@ -1,28 +1,39 @@
 using System.Collections.Generic;
+using Domain.Quests;
 
 namespace Domain
 {
     public class PlayCoordinator
     {
-        public readonly QuestTable questTable = new();
-        public readonly Army Army = new();
+        public readonly ActiveQuests activeQuests = new();
+        public readonly OfferedQuests offeredQuests = new();
+        public readonly GameState gameState = new();
 
         public void Accept(Quest quest)
         {
-            questTable.Add(quest);
+            activeQuests.Add(quest);
         }
 
         public void Discard(Quest quest)
         {
-            Army.Size -= quest.SizePenalty;
-            Army.Health -= quest.HealthPenalty;
+            quest.Penalty.Modify(gameState);
         }
 
         public void PassDay()
         {
-            foreach (Quest completedQuest in questTable.PassDay())
+            foreach (Quest declinedQuest in offeredQuests.DeclinedQuests)
             {
-                Army.Size += completedQuest.Requirement + completedQuest.Reward;
+                declinedQuest.Penalty.Modify(gameState);
+            }
+
+            foreach (Quest completedQuest in activeQuests.PassDay())
+            {
+                completedQuest.Reward.Modify(gameState);
+            }
+            
+            foreach (Quest acceptedQuest in offeredQuests.AcceptedQuests)
+            {
+                activeQuests.Add(acceptedQuest);
             }
         }
     }

@@ -1,4 +1,5 @@
 using Domain;
+using Domain.Quests;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -23,9 +24,8 @@ namespace Presentation
 
             questElement.Q<Label>("DaysToCompleteValue").text = quest.DaysToComplete.ToString();
             questElement.Q<Label>("RequirementValue").text = quest.Requirement.ToString();
-            questElement.Q<Label>("RewardValue").text = quest.Reward.ToString();
-            questElement.Q<Label>("SizePenaltyValue").text = quest.SizePenalty.ToString();
-            questElement.Q<Label>("HealthPenaltyValue").text = quest.HealthPenalty.ToString();
+            questElement.Q<Label>("RewardValue").text = quest.Reward.GetDescription();
+            questElement.Q<Label>("SizePenaltyValue").text = quest.Penalty.GetDescription();
 
             questElement.Q<Button>("Accept").clicked += () =>
             {

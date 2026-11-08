@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-namespace Domain
+namespace Domain.Quests
 {
-    public class QuestTable
+    public class ActiveQuests
     {
         private readonly Dictionary<Quest, int> _activeQuests = new();
 
@@ -11,9 +11,11 @@ namespace Domain
             _activeQuests.Add(quest, quest.DaysToComplete);
         }
         
+        /// <returns>completed quests.</returns>
         public List<Quest> PassDay()
         {
             List<Quest> completedQuests = new();
+            
             foreach (Quest quest in _activeQuests.Keys)
             {
                 _activeQuests[quest] -= 1;

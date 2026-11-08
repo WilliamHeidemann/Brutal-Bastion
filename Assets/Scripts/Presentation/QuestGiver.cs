@@ -1,5 +1,6 @@
 using System;
 using Domain;
+using Domain.Quests;
 using UnityEngine;
 
 namespace Presentation
