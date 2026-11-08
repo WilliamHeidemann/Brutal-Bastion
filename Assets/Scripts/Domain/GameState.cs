@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Domain.Modifiers;
 
 namespace Domain
 {
@@ -6,6 +7,6 @@ namespace Domain
     {
         public int ArmySize;
         public int Lives;
-        public readonly List<Modifier> Modifiers = new();
+        public readonly HashSet<IncentiveModifier> Modifiers = new();
     }
 }

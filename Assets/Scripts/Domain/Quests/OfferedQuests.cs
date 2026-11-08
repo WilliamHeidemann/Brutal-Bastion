@@ -10,16 +10,16 @@ namespace Domain.Quests
             Accepted,
             Declined
         }
-        
+
         private readonly Dictionary<Quest, Status> _quests = new();
 
         public void Clear() => _quests.Clear();
-        
+
         public void Add(Quest quest)
         {
             _quests.Add(quest, Status.Declined);
         }
-        
+
         public void Accept(Quest quest)
         {
             _quests[quest] = Status.Accepted;

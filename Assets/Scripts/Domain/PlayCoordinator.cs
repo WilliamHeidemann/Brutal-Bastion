@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Domain.Quests;
 
 namespace Domain
@@ -11,12 +10,12 @@ namespace Domain
 
         public void Accept(Quest quest)
         {
-            activeQuests.Add(quest);
+            offeredQuests.Accept(quest);
         }
 
-        public void Discard(Quest quest)
+        public void Decline(Quest quest)
         {
-            quest.Penalty.Modify(gameState);
+            offeredQuests.Decline(quest);
         }
 
         public void PassDay()
@@ -30,7 +29,7 @@ namespace Domain
             {
                 completedQuest.Reward.Modify(gameState);
             }
-            
+
             foreach (Quest acceptedQuest in offeredQuests.AcceptedQuests)
             {
                 activeQuests.Add(acceptedQuest);

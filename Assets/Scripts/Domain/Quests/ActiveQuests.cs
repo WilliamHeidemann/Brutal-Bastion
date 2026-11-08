@@ -10,12 +10,12 @@ namespace Domain.Quests
         {
             _activeQuests.Add(quest, quest.DaysToComplete);
         }
-        
+
         /// <returns>completed quests.</returns>
         public List<Quest> PassDay()
         {
             List<Quest> completedQuests = new();
-            
+
             foreach (Quest quest in _activeQuests.Keys)
             {
                 _activeQuests[quest] -= 1;
@@ -25,12 +25,12 @@ namespace Domain.Quests
                     completedQuests.Add(quest);
                 }
             }
-            
+
             foreach (Quest completedQuest in completedQuests)
             {
                 _activeQuests.Remove(completedQuest);
             }
-            
+
             return completedQuests;
         }
     }
