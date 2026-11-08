@@ -1,6 +1,6 @@
 namespace Domain
 {
-    public class Army
+    public record Army
     {
         public int Size;
         public int Health;

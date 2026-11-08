@@ -1,6 +1,6 @@
 namespace Domain
 {
-    public class Mission
+    public record Quest
     {
         public int DaysToComplete;
         public int Requirement;

@@ -1,4 +1,4 @@
-.mission-root {
+.quest-root {
     flex-grow: 1;
     padding-left: 12px;
     padding-right: 12px;
@@ -8,24 +8,24 @@
     max-width: 500px;
 }
 
-.mission-title {
+.quest-title {
     unity-font-style: bold;
     font-size: 84px;
     margin-bottom: 10px;
 }
 
-.mission-row {
+.quest-row {
     flex-direction: row;
     margin-bottom: 4px;
     font-size: 42px;
     justify-content: space-between;
 }
 
-.mission-field-label {
+.quest-field-label {
     min-width: 140px;
 }
 
-.mission-button {
+.quest-button {
     margin-top: 16px;
     font-size: 30px;
     flex-grow: 1;

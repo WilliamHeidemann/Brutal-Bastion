@@ -4,25 +4,25 @@ namespace Domain
 {
     public class PlayCoordinator
     {
-        public readonly TableOfMissions TableOfMissions = new();
+        public readonly QuestTable questTable = new();
         public readonly Army Army = new();
 
-        public void Accept(Mission mission)
+        public void Accept(Quest quest)
         {
-            TableOfMissions.Add(mission);
+            questTable.Add(quest);
         }
 
-        public void Discard(Mission mission)
+        public void Discard(Quest quest)
         {
-            Army.Size -= mission.SizePenalty;
-            Army.Health -= mission.HealthPenalty;
+            Army.Size -= quest.SizePenalty;
+            Army.Health -= quest.HealthPenalty;
         }
 
         public void PassDay()
         {
-            foreach (Mission completedMission in TableOfMissions.PassDay())
+            foreach (Quest completedQuest in questTable.PassDay())
             {
-                Army.Size += completedMission.Requirement + completedMission.Reward;
+                Army.Size += completedQuest.Requirement + completedQuest.Reward;
             }
         }
     }

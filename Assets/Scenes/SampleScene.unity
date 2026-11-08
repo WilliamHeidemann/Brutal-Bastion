@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5820aa7954489abdfd4482a6391b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Presentation.EntryPoint
-  _missionGiver: {fileID: 2096273494}
-  _missionPresenter: {fileID: 419547618}
+  _questGiver: {fileID: 2096273494}
+  _questPresenter: {fileID: 419547618}
 --- !u!4 &301127062
 Transform:
   m_ObjectHideFlags: 0
@@ -534,8 +534,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Presentation.MissionPresenter
   _playManager: {fileID: 523506216}
-  _missions: {fileID: 419547617}
-  _missionTemplate: {fileID: 9197481963319205126, guid: 47eab227297cd40c7ab10382d652900d, type: 3}
+  _quests: {fileID: 419547617}
+  _questTemplate: {fileID: 9197481963319205126, guid: 47eab227297cd40c7ab10382d652900d, type: 3}
 --- !u!4 &419547619
 Transform:
   m_ObjectHideFlags: 0
@@ -676,7 +676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f169b5c7cc6433cb9ca5d2237fb156b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Presentation.MissionGiver
-  _missionPresenter: {fileID: 419547618}
+  _questPresenter: {fileID: 419547618}
 --- !u!4 &2096273495
 Transform:
   m_ObjectHideFlags: 0

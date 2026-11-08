@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace Domain
 {
-    public class MissionGenerator
+    public class QuestGenerator
     {
-        public Mission Generate()
+        public Quest Generate()
         {
-            return new Mission
+            return new Quest
             {
                 DaysToComplete = Random.Range(1, 4),
                 Requirement = Random.Range(1, 40) * 10,

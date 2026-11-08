@@ -4,13 +4,13 @@ namespace Presentation
 {
     public class EntryPoint : MonoBehaviour
     {
-        [SerializeField] private MissionGiver _missionGiver;
-        [SerializeField] private MissionPresenter _missionPresenter;
+        [SerializeField] private QuestGiver _questGiver;
+        [SerializeField] private QuestPresenter _questPresenter;
 
         private void Start()
         {
-            _missionPresenter.Initialize();
-            _missionGiver.GiveMissions(5);
+            _questPresenter.Initialize();
+            _questGiver.GiveQuests(5);
         }
     }
 }
