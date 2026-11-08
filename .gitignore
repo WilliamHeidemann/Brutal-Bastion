@@ -136,3 +136,24 @@ crashlytics-build.properties
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# ==========================================
+# FMOD Game Engine Integration Best Practices
+# ==========================================
+
+# Ignore local FMOD editor logs and caches
+fmod_editor.log
+.fmod/
+
+# Unity-specific FMOD integrations
+# (Ignore the giant editor cache file that recreates itself)
+/[Aa]ssets/Plugins/FMOD/Resources/FMODStudioCache.asset
+
+# --- CRITICAL: NEVER IGNORE FMOD DLLs ---
+# Some generic engine .gitignores block all .dll/.so files. 
+# You must explicitly whitelist FMOD binaries so the game compiles.
+!/[Aa]ssets/Plugins/FMOD/**/*.dll
+!/[Aa]ssets/Plugins/FMOD/**/*.so
+!/[Aa]ssets/Plugins/FMOD/**/*.bundle
+!/[Aa]ssets/Plugins/FMOD/**/*.dylib
+!/[Aa]ssets/Plugins/FMOD/**/*.a

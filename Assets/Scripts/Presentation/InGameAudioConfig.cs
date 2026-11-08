@@ -17,7 +17,7 @@ namespace Game.Presentation.Audio
 
         public EventReference Get(Sound sound) => sound switch
         {
-            Sound.DrawCard => _drawQuest,
+            Sound.DrawQuest => _drawQuest,
 
             _ => throw new ArgumentOutOfRangeException(nameof(sound), sound, null)
         };
