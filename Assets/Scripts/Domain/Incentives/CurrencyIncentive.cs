@@ -7,6 +7,8 @@ namespace Domain.Incentives
     {
         private readonly int _amount;
         private readonly Currency _currency;
+        public int Amount => _amount;
+        public Currency Currency => _currency;
 
         public CurrencyIncentive(int amount, Currency currency)
         {

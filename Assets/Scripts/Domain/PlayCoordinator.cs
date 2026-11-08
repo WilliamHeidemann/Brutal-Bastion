@@ -92,6 +92,24 @@ namespace Domain
             foreach (Quest completedQuest in _activeQuests.PassDay())
             {
                 completedQuest.Reward.Modify(_gameState);
+
+                List<ValueChange> rewardChanges = _gameState.Modifiers
+                    .Where(m => m.ToAffect.Contains(completedQuest.Region))
+                    .SelectMany(m => m.Changes)
+                    .Where(vc => vc.TimeOfEffect == TimeOfEffect.OnReward)
+                    .ToList();
+
+                float lifeBonus = rewardChanges
+                    .Where(vc => vc.Attribute == Attribute.Lives)
+                    .Sum(vc => Bonus(vc, completedQuest.Reward.Amount));
+
+                _gameState.Lives = Mathf.Max(0, _gameState.Lives + (int)lifeBonus);
+
+                float armyBonus = rewardChanges
+                    .Where(vc => vc.Attribute == Attribute.ArmySize)
+                    .Sum(vc => Bonus(vc, completedQuest.Reward.Amount));
+
+                _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize + (int)armyBonus);
             }
         }
 
@@ -100,6 +118,24 @@ namespace Domain
             foreach (Quest declinedQuest in _offeredQuests.DeclinedQuests)
             {
                 declinedQuest.Penalty.Modify(_gameState);
+
+                List<ValueChange> penaltyChanges = _gameState.Modifiers
+                    .Where(m => m.ToAffect.Contains(declinedQuest.Region))
+                    .SelectMany(m => m.Changes)
+                    .Where(vc => vc.TimeOfEffect == TimeOfEffect.OnPenalty)
+                    .ToList();
+
+                float lifeBonus = penaltyChanges
+                    .Where(vc => vc.Attribute == Attribute.Lives)
+                    .Sum(vc => Bonus(vc, declinedQuest.Penalty.Amount));
+
+                _gameState.Lives = Mathf.Max(0, _gameState.Lives + (int)lifeBonus);
+
+                float armyBonus = penaltyChanges
+                    .Where(vc => vc.Attribute == Attribute.ArmySize)
+                    .Sum(vc => Bonus(vc, declinedQuest.Penalty.Amount));
+
+                _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize + (int)armyBonus);
             }
         }
         
