@@ -33,8 +33,8 @@ namespace Domain.Incentives
 
         public string GetDescription() => _currency switch
         {
-            Currency.Lives => _amount > 0 ? $"Gain {_amount} life." : $"Lose {_amount} life.",
-            Currency.ArmySize => _amount > 0 ? $"Gain {_amount} army size." : $"Lose {_amount} army size.",
+            Currency.Lives => _amount > 0 ? $"Gain {_amount} life." : $"Lose {Mathf.Abs(_amount)} life.",
+            Currency.ArmySize => _amount > 0 ? $"Gain {_amount} army size." : $"Lose {Mathf.Abs(_amount)} army size.",
             _ => string.Empty
         };
     }
