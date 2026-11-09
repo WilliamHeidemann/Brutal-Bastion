@@ -24,9 +24,12 @@ public class QuestIndicator : MonoBehaviour
     
     public void OnClick()
     {
-        Debug.Log("Click");
-        var go = Instantiate(QuestPresenterPrefab, transform.parent);
+        var go = Instantiate(QuestPresenterPrefab, transform.parent.parent);
         var qp = go.GetComponent<QuestPresentation>();
+        Debug.Log($"Quest Cost: {Quest.Requirement}");
+        Debug.Log($"Quest Time: {Quest.DaysToComplete}");
+        Debug.Log($"Quest Reward: {Quest.Reward.GetDescription()}");
+        Debug.Log($"Quest Penalty: {Quest.Penalty.GetDescription()}");
         qp.indicator = this;
         qp.Quest = Quest;
     }

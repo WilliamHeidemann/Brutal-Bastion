@@ -157,3 +157,7 @@ fmod_editor.log
 !/[Aa]ssets/Plugins/FMOD/**/*.bundle
 !/[Aa]ssets/Plugins/FMOD/**/*.dylib
 !/[Aa]ssets/Plugins/FMOD/**/*.a
+
+# IDE file
+.idea/*
+.vscode/*

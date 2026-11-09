@@ -25,10 +25,17 @@ public class SoldierBar : MonoBehaviour
     {
         Soldiers = maxSoldiers;
         PlayManager.Instance.PlayCoordinator.OnArmySizeChange += UpdateSoldiers;
+        PlayManager.Instance.PlayCoordinator.OnNewDay += NewDay;
     }
 
     private void UpdateSoldiers()
     {
         Soldiers = maxSoldiers - PlayManager.Instance.PlayCoordinator.GetCommitedSoldiers();
+    }
+
+    private void NewDay()
+    {
+        maxSoldiers = PlayManager.Instance.PlayCoordinator.GetArmySize();
+        UpdateSoldiers();
     }
 }

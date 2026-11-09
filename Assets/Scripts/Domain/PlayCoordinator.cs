@@ -18,6 +18,7 @@ namespace Domain
         public Action OnOutOfLives;
         public Action OnArmySizeChange;
         public Action OnNewDay;
+        public Action OnLivesChanged;
 
         public void SetQuestsForTheDay(List<Quest> quests)
         {
@@ -32,23 +33,26 @@ namespace Domain
         {
             _offeredQuests.Accept(quest);
             if (quest.Requirement != 0)
-                OnArmySizeChange.Invoke();
+                OnArmySizeChange?.Invoke();
         }
 
         public void Decline(Quest quest)
         {
             _offeredQuests.Decline(quest);
             if (quest.Requirement != 0)
-                OnArmySizeChange.Invoke();
+                OnArmySizeChange?.Invoke();
         }
 
         public void PassDay()
         {
+            Debug.Log($"Quests accepted: {_offeredQuests.AcceptedQuests.Count() + _offeredQuests.DeclinedQuests.Count()}");
             PayForAcceptedQuests();
 
             ApplyRewards();
 
             ApplyPenalties();
+            
+            OnLivesChanged?.Invoke();
 
             if (_gameState.Lives <= 0)
             {
@@ -56,6 +60,7 @@ namespace Domain
             }
 
             TickModifiers();
+            OnNewDay?.Invoke();
         }
 
         private void PayForAcceptedQuests()
@@ -200,6 +205,16 @@ namespace Domain
         public int GetCommitedSoldiers()
         {
             return _offeredQuests.AcceptedQuests.Sum(q => q.Requirement);
+        }
+
+        public int GetArmySize()
+        {
+            return _gameState.ArmySize;
+        }
+        
+        public int GetLives()
+        {
+            return _gameState.Lives;
         }
     }
 }
