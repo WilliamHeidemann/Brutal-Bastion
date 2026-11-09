@@ -5,6 +5,7 @@ using Game.Presentation.Audio;
 using Presentation;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class QuestIndicator : MonoBehaviour
 {
@@ -18,8 +19,8 @@ public class QuestIndicator : MonoBehaviour
 
     private void Start()
     {
-        Quest = QuestGenerator.Generate();
-        _audioService.Play(Sound.DrawQuest);
+        // Random range. TODO: Remove and spawn sensibly elsewhere.
+        GetComponent<RectTransform>().localPosition = new Vector3(Random.Range(-800, 800), Random.Range(-600, 600), 0);
     }
     
     public void OnClick()

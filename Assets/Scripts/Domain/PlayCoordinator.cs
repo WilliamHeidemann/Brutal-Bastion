@@ -218,5 +218,7 @@ namespace Domain
         {
             return _gameState.Lives;
         }
+
+        public IEnumerable<Quest> GetOfferedQuests() => _offeredQuests.AllQuests;
     }
 }
