@@ -32,5 +32,6 @@ namespace Domain.Quests
 
         public IEnumerable<Quest> AcceptedQuests => _quests.Keys.Where(q => _quests[q] == Status.Accepted);
         public IEnumerable<Quest> DeclinedQuests => _quests.Keys.Where(q => _quests[q] == Status.Declined);
+        public IEnumerable<Quest> AllQuests => _quests.Keys;
     }
 }

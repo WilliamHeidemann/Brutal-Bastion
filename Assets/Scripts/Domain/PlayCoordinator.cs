@@ -19,6 +19,7 @@ namespace Domain
         public Action OnArmySizeChange;
         public Action OnNewDay;
         public Action OnLivesChanged;
+        public Action OnQuestsChanged;
 
         public void SetQuestsForTheDay(List<Quest> quests)
         {
@@ -60,6 +61,7 @@ namespace Domain
             }
 
             TickModifiers();
+            _offeredQuests.Clear();
             OnNewDay?.Invoke();
         }
 
