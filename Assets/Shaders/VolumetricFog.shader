@@ -15,6 +15,9 @@ Shader "Custom/VolumetricFog"
         _NoiseTiling("Noise tiling", float) = 1
         _DensityThreshold("Density threshold", Range(0, 1)) = 0.1
         
+        [HDR]_LightContribution("Light contribution", Color) = (1, 1, 1, 1)
+        _LightScattering("Light Scattering", Range(0, 1)) = 0.2
+        
         _YCutOff("Y Cut-off", float) = 0
     }
 
@@ -49,13 +52,21 @@ Shader "Custom/VolumetricFog"
             float _NoiseTiling;
             float _DensityThreshold;
             
+            float4 _LightContribution;
+            float _LightScattering;
+            
             float _YCutOff;
+            
+            float heyney_greenstein(float angle, float scattering)
+            {
+                return (1.0 - angle * angle) / (4.0 * PI * pow(1.0 + scattering * scattering - (2.0 * scattering) * angle, 1.5f));
+            }
             
             float get_density(float3 worldPos)
             {
                 if (worldPos.y > _YCutOff)
                     return 0;
-                float4 noise = _FogNoise.SampleLevel(sampler_TrilinearRepeat, (worldPos + _FogDirection*_Time.y/_FogSpeed) * 0.01 * _NoiseTiling, 0);
+                float4 noise = _FogNoise.SampleLevel(sampler_TrilinearRepeat, (worldPos + _FogDirection*_Time.y*_FogSpeed) * 0.01 * _NoiseTiling, 0);
                 float density = dot(noise, noise);
                 density = saturate(density - _DensityThreshold) * _DensityMultiplier;
                 return density;
@@ -85,7 +96,8 @@ Shader "Custom/VolumetricFog"
                     float density = get_density(rayPos);
                     if (density > 0)
                     {
-                        fogCol.rgb += density * _StepSize;
+                        Light mainLight = GetMainLight(TransformWorldToShadowCoord(rayPos));
+                        fogCol.rgb += mainLight.color.rgb * _LightContribution.rgb * heyney_greenstein(dot(rayDir, mainLight.direction), _LightScattering) * density * mainLight.shadowAttenuation * _StepSize;
                         transmittance *= exp(-density * _StepSize);
                     }
                     distTravelled += _StepSize;
