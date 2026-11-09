@@ -16,6 +16,8 @@ namespace Domain
         private readonly GameState _gameState = new();
 
         public Action OnOutOfLives;
+        public Action OnArmySizeChange;
+        public Action OnNewDay;
 
         public void SetQuestsForTheDay(List<Quest> quests)
         {
@@ -29,11 +31,15 @@ namespace Domain
         public void Accept(Quest quest)
         {
             _offeredQuests.Accept(quest);
+            if (quest.Requirement != 0)
+                OnArmySizeChange.Invoke();
         }
 
         public void Decline(Quest quest)
         {
             _offeredQuests.Decline(quest);
+            if (quest.Requirement != 0)
+                OnArmySizeChange.Invoke();
         }
 
         public void PassDay()
@@ -189,6 +195,11 @@ namespace Domain
             {
                 _gameState.Modifiers.Remove(modifier);
             }
+        }
+
+        public int GetCommitedSoldiers()
+        {
+            return _offeredQuests.AcceptedQuests.Sum(q => q.Requirement);
         }
     }
 }

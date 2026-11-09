@@ -26,12 +26,26 @@ public class QuestIndicator : MonoBehaviour
     {
         Debug.Log("Click");
         var go = Instantiate(QuestPresenterPrefab, transform.parent);
-        go.GetComponent<QuestPresentation>().Quest = Quest;
+        var qp = go.GetComponent<QuestPresentation>();
+        qp.indicator = this;
+        qp.Quest = Quest;
     }
 
     private void Toggle()
     {
         _accepted = !_accepted;
         GetComponent<Image>().sprite = _accepted ? AcceptSprite : DeclineSprite;
+    }
+
+    public void Accept()
+    {
+        _accepted = true;
+        GetComponent<Image>().sprite = AcceptSprite;
+    }
+
+    public void Decline()
+    {
+        _accepted = false;
+        GetComponent<Image>().sprite = DeclineSprite;
     }
 }

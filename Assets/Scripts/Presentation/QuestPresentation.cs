@@ -1,4 +1,5 @@
 using Domain.Quests;
+using Presentation;
 using UnityEngine;
 
 public class QuestPresentation : MonoBehaviour
@@ -14,7 +15,20 @@ public class QuestPresentation : MonoBehaviour
             _penalty.text = _quest.Penalty.GetDescription();
         }
     }
+    public QuestIndicator indicator;
     [SerializeField] private TMPro.TextMeshProUGUI _title;
     [SerializeField] private TMPro.TextMeshProUGUI _reward;
     [SerializeField] private TMPro.TextMeshProUGUI _penalty;
+
+    public void Accept()
+    {
+        indicator.Accept();
+        PlayManager.Instance.PlayCoordinator.Accept(Quest);
+    }
+
+    public void Decline()
+    {
+        indicator.Decline();
+        PlayManager.Instance.PlayCoordinator.Decline(Quest);
+    }
 }
