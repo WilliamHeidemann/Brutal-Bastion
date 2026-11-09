@@ -4,6 +4,7 @@ using Domain.Quests;
 using Game.Presentation.Audio;
 using Presentation;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestIndicator : MonoBehaviour
 {
@@ -21,14 +22,16 @@ public class QuestIndicator : MonoBehaviour
         _audioService.Play(Sound.DrawQuest);
     }
     
-    private void OnMouseDown()
+    public void OnClick()
     {
-        Debug.Log("OnMouseDown");
+        Debug.Log("Click");
+        var go = Instantiate(QuestPresenterPrefab, transform.parent);
+        go.GetComponent<QuestPresentation>().Quest = Quest;
     }
 
     private void Toggle()
     {
         _accepted = !_accepted;
-        GetComponent<SpriteRenderer>().sprite = _accepted ? AcceptSprite : DeclineSprite;
+        GetComponent<Image>().sprite = _accepted ? AcceptSprite : DeclineSprite;
     }
 }
