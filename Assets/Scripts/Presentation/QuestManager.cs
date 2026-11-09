@@ -7,7 +7,7 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     [SerializeField] private GameObject QuestIndicator;
-    private List<GameObject> indicators;
+    private List<GameObject> indicators = new List<GameObject>();
     public FmodAudioService _audioService;
 
     private void Start()
@@ -32,6 +32,7 @@ public class QuestManager : MonoBehaviour
         // Get rid of old indicators.
         foreach (var indicator in indicators) 
             Destroy(indicator);
+        indicators.Clear();
         
         // Spawn indicators for new quests.
         var quests = PlayManager.Instance.PlayCoordinator.GetOfferedQuests();

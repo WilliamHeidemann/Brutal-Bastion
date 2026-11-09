@@ -20,7 +20,7 @@ public class QuestIndicator : MonoBehaviour
     private void Start()
     {
         // Random range. TODO: Remove and spawn sensibly elsewhere.
-        GetComponent<RectTransform>().localPosition = new Vector3(Random.Range(-800, 800), Random.Range(-600, 600), 0);
+        GetComponent<RectTransform>().localPosition = new Vector3(Random.Range(-800, 800), Random.Range(-500, 500), 0);
     }
     
     public void OnClick()
