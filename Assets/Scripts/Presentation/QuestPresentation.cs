@@ -1,6 +1,7 @@
 using Domain.Quests;
 using Presentation;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestPresentation : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class QuestPresentation : MonoBehaviour
             _duration.text = $"Duration: {Quest.DaysToComplete.ToString()} days";
             _reward.text = Quest.Reward.GetDescription();
             _penalty.text = Quest.Penalty.GetDescription();
+            if (Quest.Requirement > PlayManager.Instance.AvailableSoldiers)
+                AcceptButton.interactable = false;
         }
     }
     public QuestIndicator indicator;
@@ -27,6 +30,8 @@ public class QuestPresentation : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI _duration;
     [SerializeField] private TMPro.TextMeshProUGUI _reward;
     [SerializeField] private TMPro.TextMeshProUGUI _penalty;
+    [SerializeField] private Button DeclineButton;
+    [SerializeField] private Button AcceptButton;
 
     public void Accept()
     {

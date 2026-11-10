@@ -134,6 +134,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1130830384688010494}
+        m_TargetAssemblyTypeName: SelfDestruct, Assembly-CSharp
+        m_MethodName: Trigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &482590468051573228
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +347,18 @@ MonoBehaviour:
       - m_Target: {fileID: -2689842722594764719}
         m_TargetAssemblyTypeName: QuestPresentation, Assembly-CSharp
         m_MethodName: Accept
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1130830384688010494}
+        m_TargetAssemblyTypeName: SelfDestruct, Assembly-CSharp
+        m_MethodName: Trigger
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -829,6 +853,8 @@ MonoBehaviour:
   _duration: {fileID: 8499194208930632242}
   _reward: {fileID: 6539546376606293819}
   _penalty: {fileID: 5505546543602265768}
+  DeclineButton: {fileID: 4143569898700243386}
+  AcceptButton: {fileID: 1272032771571549369}
 --- !u!114 &1130830384688010494
 MonoBehaviour:
   m_ObjectHideFlags: 0

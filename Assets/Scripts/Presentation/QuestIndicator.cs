@@ -43,13 +43,19 @@ public class QuestIndicator : MonoBehaviour
 
     public void Accept()
     {
+        if (_accepted)
+            return;
+        
         _accepted = true;
-        GetComponent<Image>().sprite = AcceptSprite;
+        GetComponent<FlipSprite>().Flip(AcceptSprite);
     }
 
     public void Decline()
     {
+        if (!_accepted)
+            return;
+        
         _accepted = false;
-        GetComponent<Image>().sprite = DeclineSprite;
+        GetComponent<FlipSprite>().Flip(DeclineSprite);
     }
 }

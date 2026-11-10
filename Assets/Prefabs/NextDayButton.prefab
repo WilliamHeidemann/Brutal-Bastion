@@ -250,7 +250,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Next Day
+  m_text: End Day
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 40a9ed5c3a3a5d8448a85917f1bb69d9, type: 2}
   m_sharedMaterial: {fileID: -5383520179746041342, guid: 40a9ed5c3a3a5d8448a85917f1bb69d9, type: 2}

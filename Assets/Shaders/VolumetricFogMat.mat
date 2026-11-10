@@ -30,7 +30,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _DensityMultiplier: 1
-    - _DensityThreshold: 0.128
+    - _DensityThreshold: 0.282
     - _FogSpeed: 0.025
     - _LightScattering: 0.414
     - _MaxDistance: 6.64

@@ -46,7 +46,6 @@ namespace Domain
 
         public void PassDay()
         {
-            Debug.Log($"Quests accepted: {_offeredQuests.AcceptedQuests.Count() + _offeredQuests.DeclinedQuests.Count()}");
             PayForAcceptedQuests();
 
             ApplyRewards();

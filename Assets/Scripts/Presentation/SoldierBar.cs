@@ -12,12 +12,13 @@ public class SoldierBar : MonoBehaviour
     private int soldiers = 0;
     public int Soldiers
     {
+        get => soldiers;
         set
         {
             soldiers = value;
             text.text = $"{soldiers}/{maxSoldiers}";
             slider.maxValue = maxSoldiers;
-            slider.value = maxSoldiers;
+            slider.value = value;
         }
     }
 
