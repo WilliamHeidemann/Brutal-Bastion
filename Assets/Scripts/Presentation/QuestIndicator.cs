@@ -14,18 +14,17 @@ public class QuestIndicator : MonoBehaviour
     public Quest Quest;
     public GameObject QuestPresenterPrefab;
     public FmodAudioService _audioService;
+    public Transform canvas;
     
     private bool _accepted = false;
 
     private void Start()
     {
-        // Random range. TODO: Remove and spawn sensibly elsewhere.
-        GetComponent<RectTransform>().localPosition = new Vector3(Random.Range(-800, 800), Random.Range(-500, 500), 0);
     }
     
     public void OnClick()
     {
-        var go = Instantiate(QuestPresenterPrefab, transform.parent.parent);
+        var go = Instantiate(QuestPresenterPrefab, canvas);
         var qp = go.GetComponent<QuestPresentation>();
         qp.indicator = this;
         qp.Quest = Quest;

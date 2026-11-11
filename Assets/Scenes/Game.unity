@@ -718,6 +718,10 @@ PrefabInstance:
       value: QuestManager
       objectReference: {fileID: 0}
     - target: {fileID: 5635042156543165766, guid: 745a73f2a4b4bd6e49242d9ce57ac3b2, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1661252321}
+    - target: {fileID: 5635042156543165766, guid: 745a73f2a4b4bd6e49242d9ce57ac3b2, type: 3}
       propertyPath: _audioService
       value: 
       objectReference: {fileID: 2108115266}
