@@ -44,6 +44,9 @@ namespace Domain
                 return Region.All.Format();
             }
 
+            if (regions.Count() == 1)
+                return regions.First().Format();
+
             var ordered = regions.OrderBy(region => region);
 
             string formatted = string.Join(", ", ordered.SkipLast(1).Select(r => r.Format()));
