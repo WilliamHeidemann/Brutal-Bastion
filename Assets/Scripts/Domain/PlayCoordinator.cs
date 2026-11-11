@@ -219,5 +219,10 @@ namespace Domain
         }
 
         public IEnumerable<Quest> GetOfferedQuests() => _offeredQuests.AllQuests;
+
+        public bool IsQuestValid(QuestObject quest)
+        {
+            return quest.IsValid(_gameState);
+        }
     }
 }

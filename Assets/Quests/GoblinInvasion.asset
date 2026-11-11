@@ -13,15 +13,21 @@ MonoBehaviour:
   m_Name: GoblinInvasion
   m_EditorClassIdentifier: Assembly-CSharp:Domain.Quests:QuestObject
   Title: Goblin Invasion
-  Description: 
-  Repeatable: 0
+  Description: The gobbs are wildin'. Get to it.
+  Region: 4
+  DrawWeight: 10
+  Repeatable: 1
   Condition:
     Days:
       Min: -1
       Max: -1
       steps: 1
     Flags: []
+  Cost:
+    Min: 100
+    Max: 300
+    steps: 50
   DaysToComplete:
-    Min: 1
-    Max: 4
+    Min: 0
+    Max: 0
     steps: 1

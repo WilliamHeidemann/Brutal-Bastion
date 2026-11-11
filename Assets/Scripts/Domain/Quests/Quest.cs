@@ -18,14 +18,19 @@ namespace Domain.Quests
         public Region Region;
     }
     
-    [CreateAssetMenu(fileName = "Quest", menuName = "Scriptable Objects/Quest")]
+    [CreateAssetMenu(fileName = "Quest", menuName = "Quests/Quest")]
     public class QuestObject : ScriptableObject
     {
         public string Title;
         public string Description;
+        public Region Region;
+        public int DrawWeight = 10;
         public bool Repeatable = true;
         public QuestCondition Condition;
-        public Range DaysToComplete;
+        public Range Cost = new Range{Min = 100, Max = 300, steps = 50};
+        public Range DaysToComplete = new Range{Min = 1, Max = 3};
+        public Consequence Success;
+        public Consequence Failure;
 
         public Quest Convert()
         {
@@ -33,9 +38,24 @@ namespace Domain.Quests
             {
                 Title = Title,
                 Description = Description,
+                Region = Region.Resolve(),
                 DaysToComplete = DaysToComplete.Collapse(),
+                Requirement = Cost.Collapse(),
+                Reward = new CurrencyIncentive(Success.Soldiers.Collapse(), Currency.ArmySize),
+                Penalty = new CurrencyIncentive(Failure.Soldiers.Collapse(), Currency.ArmySize),
             };
         }
+
+        public bool IsValid(GameState state)
+        {
+            return Condition.Test(state);
+        }
+    }
+
+    [CreateAssetMenu(fileName = "QuestList", menuName = "Quests/Quest List")]
+    public class QuestList : ScriptableObject
+    {
+        public List<QuestObject> Quests;
     }
 
     [Serializable]
@@ -71,5 +91,14 @@ namespace Domain.Quests
                 return false;
             return Flags.All(flag => state.flags.Contains(flag));
         }
+    }
+
+    [Serializable]
+    public class Consequence
+    {
+        public Range Soldiers = new Range{Min = 50,  Max = 300, steps = 25};
+        public Range Lives = new Range{Min = 0, Max = 3};
+        public List<string> FlagstoAdd;
+        public List<string> FlagstoRemove;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Domain
 {
@@ -52,6 +53,23 @@ namespace Domain
             string formatted = string.Join(", ", ordered.SkipLast(1).Select(r => r.Format()));
             formatted += $" and {ordered.Last().Format()}";
             return formatted;
+        }
+
+        public static Region Resolve(this Region region)
+        {
+            List<Region> standardRegions = new List<Region>()
+            {
+                Region.Orchid,
+                Region.Ashmound,
+                Region.Argot,
+                Region.Barrow,
+            };
+
+            return region switch
+            {
+                Region.All => standardRegions.ElementAt(Random.Range(0, standardRegions.Count)),
+                _ => region,
+            };
         }
     }
 }

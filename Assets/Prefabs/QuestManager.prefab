@@ -234,5 +234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d5d7f505e46727c8a8fd3290310afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestManager
+  _questList: {fileID: 11400000, guid: dae24dc184272e9418b3df55440895c3, type: 2}
   QuestIndicator: {fileID: 111048261809516274, guid: 8f9a5d11756ae7e0fb7f80af4b33ebe0, type: 3}
   _audioService: {fileID: 0}
