@@ -9,35 +9,39 @@ public class QuestManager : MonoBehaviour
 {
     [SerializeField] private QuestList _questList;
     [SerializeField] private GameObject QuestIndicator;
+    [SerializeField] private int questsToDraw = 3;
     private List<GameObject> indicators = new List<GameObject>();
     public FmodAudioService _audioService;
 
     private void Start()
     {
-        Debug.Log("Starting QuestManager");
         PlayManager.Instance.PlayCoordinator.OnNewDay += GenerateQuests;
-        Debug.Log("Starting QuestManager2");
         GenerateQuests();
-        Debug.Log("Starting QuestManager3");
     }
 
     public void GenerateQuests()
     {
-        Debug.Log("Generating quests");
-        List<Quest> quests = new List<Quest>();
-        List<Quest> validQuests = _questList.Quests
+        var quests = new List<Quest>();
+        var validQuests = _questList.Quests
             .Where(q => PlayManager.Instance.PlayCoordinator.IsQuestValid(q))
-            .Select(q => q.Convert())
             .ToList();
-        Debug.Log("Generating quest2s");
-        
-        foreach (Quest quest in validQuests)
-            Debug.Log(quest.Title);
 
-        quests = validQuests.Take(3).ToList();
-        
-        foreach (Quest quest in quests)
-            Debug.Log(quest.Title);
+        while (quests.Count < questsToDraw && validQuests.Count != 0)
+        {
+            int weightSum = validQuests.Sum(q => q.DrawWeight);
+            Debug.Log(weightSum);
+            int lottery = Random.Range(0, weightSum) + 1;
+            for (int i = 0; i < validQuests.Count; i++)
+            {
+                lottery -= validQuests[i].DrawWeight;
+                if (lottery <= 0)
+                {
+                    quests.Add(validQuests[i].Convert());
+                    validQuests.RemoveAt(i);
+                    break;
+                }
+            }
+        }
         
         PlayManager.Instance.PlayCoordinator.SetQuestsForTheDay(quests);
         

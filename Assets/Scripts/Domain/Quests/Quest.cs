@@ -71,7 +71,7 @@ namespace Domain.Quests
         public int Collapse()
         {
             int steprange = (Max-Min) / steps;
-            return Random.Range(0, steprange)*steps + steps*Min;
+            return Random.Range(0, steprange)*steps + Min;
         }
     }
 
@@ -84,10 +84,10 @@ namespace Domain.Quests
         public bool Test(GameState state)
         {
             // There is a minimum day on a quest, and at least that many days have elapsed.
-            if (Days.Min <= 0 && Days.Min <= state.Day)
+            if (Days.Min >= 0 && Days.Min <= state.Day)
                 return false;
             // There is a maximum day on a quest, and at most that many days have elapsed.
-            if (Days.Max <= 0 && Days.Max >= state.Day)
+            if (Days.Max >= 0 && Days.Max >= state.Day)
                 return false;
             return Flags.All(flag => state.flags.Contains(flag));
         }

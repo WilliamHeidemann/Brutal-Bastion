@@ -1,3 +1,4 @@
+using Domain;
 using Domain.Quests;
 using Presentation;
 using UnityEngine;
@@ -12,10 +13,9 @@ public class QuestPresentation : MonoBehaviour
         set
         {
             _quest = value;
-            Debug.Log($"Quest Cost: {Quest.Requirement}");
-            Debug.Log($"Quest Time: {Quest.DaysToComplete}");
-            Debug.Log($"Quest Reward: {Quest.Reward.GetDescription()}");
-            Debug.Log($"Quest Penalty: {Quest.Penalty.GetDescription()}");
+            _title.text = _quest.Title;
+            _description.text = _quest.Description;
+            _region.text = _quest.Region.Format();
             _cost.text = $"Cost: {Quest.Requirement.ToString()} soldiers";
             _duration.text = $"Duration: {Quest.DaysToComplete.ToString()} days";
             _reward.text = Quest.Reward.GetDescription();
@@ -26,6 +26,8 @@ public class QuestPresentation : MonoBehaviour
     }
     public QuestIndicator indicator;
     [SerializeField] private TMPro.TextMeshProUGUI _title;
+    [SerializeField] private TMPro.TextMeshProUGUI _description;
+    [SerializeField] private TMPro.TextMeshProUGUI _region;
     [SerializeField] private TMPro.TextMeshProUGUI _cost;
     [SerializeField] private TMPro.TextMeshProUGUI _duration;
     [SerializeField] private TMPro.TextMeshProUGUI _reward;
