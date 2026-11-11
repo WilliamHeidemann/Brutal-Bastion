@@ -18,7 +18,7 @@ namespace Tests
             {
                 DaysToComplete = 1,
                 Requirement = 1,
-                Region = Region.Fields,
+                Region = Region.Orchid,
                 Reward = new CurrencyIncentive(2, Currency.Lives),
                 Penalty = new CurrencyIncentive(0, Currency.Lives)
             };
@@ -42,7 +42,7 @@ namespace Tests
             {
                 DaysToComplete = 2,
                 Requirement = 100,
-                Region = Region.Fields,
+                Region = Region.Orchid,
                 Reward = new CurrencyIncentive(200, Currency.ArmySize),
                 Penalty = new CurrencyIncentive(0, Currency.Lives)
             };
@@ -71,7 +71,7 @@ namespace Tests
             {
                 DaysToComplete = 1,
                 Requirement = 1,
-                Region = Region.Fields,
+                Region = Region.Orchid,
                 Reward = new CurrencyIncentive(1, Currency.Lives),
                 Penalty = new CurrencyIncentive(0, Currency.Lives)
             };
@@ -80,7 +80,7 @@ namespace Tests
             {
                 DaysToComplete = 1,
                 Requirement = 1,
-                Region = Region.Ruins,
+                Region = Region.Ashmound,
                 Reward = new CurrencyIncentive(200, Currency.ArmySize),
                 Penalty = new CurrencyIncentive(0, Currency.Lives)
             };
@@ -104,7 +104,7 @@ namespace Tests
             {
                 DaysToComplete = 1,
                 Requirement = 1,
-                Region = Region.Fields,
+                Region = Region.Orchid,
                 Reward = new CurrencyIncentive(0, Currency.Lives),
                 Penalty = new CurrencyIncentive(-2, Currency.Lives)
             };
@@ -123,7 +123,7 @@ namespace Tests
             GameState gameState = GetGameState(playCoordinator);
             IncentiveModifier pickupModifier = new IncentiveModifier
             {
-                ToAffect = new List<Region> { Region.Fields },
+                ToAffect = new List<Region> { Region.Orchid },
                 Changes = new List<ValueChange>
                 {
                     new ValueChange
@@ -141,7 +141,7 @@ namespace Tests
             {
                 DaysToComplete = 1,
                 Requirement = 1,
-                Region = Region.Fields,
+                Region = Region.Orchid,
                 Reward = new ModifierIncentive(pickupModifier),
                 Penalty = new CurrencyIncentive(0, Currency.Lives)
             };

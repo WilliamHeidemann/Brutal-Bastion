@@ -13,7 +13,7 @@ namespace Domain.Quests
                 Requirement = Random.Range(1, 4) * 100,
                 Reward = IncentiveGenerator.GenerateReward(),
                 Penalty = IncentiveGenerator.GeneratePenalty(),
-                Region = Region.Fields
+                Region = Region.Orchid
             };
         }
     }

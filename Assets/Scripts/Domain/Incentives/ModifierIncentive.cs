@@ -27,21 +27,11 @@ namespace Domain.Incentives
                 return "Apply a temporary quest modifier.";
             }
 
-            string regions = FormatRegions(Modifier.ToAffect);
+            string regions = Modifier.ToAffect.Format();
             string effects = FormatEffects(Modifier.Changes);
             string duration = FormatDuration(Modifier.Duration);
 
             return $"For {regions} quests, {effects} {duration}";
-        }
-
-        private static string FormatRegions(List<Region> regions)
-        {
-            if (regions == null || regions.Count == 0 || regions.Count == Enum.GetValues(typeof(Region)).Length)
-            {
-                return "all";
-            }
-
-            return string.Join(" and ", regions.Select(r => r.ToString().ToLowerInvariant()));
         }
 
         private static string FormatEffects(List<ValueChange> changes)
