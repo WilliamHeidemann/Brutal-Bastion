@@ -8,6 +8,7 @@ namespace Presentation
         public PlayCoordinator PlayCoordinator = new();
         private static PlayManager _instance;
         public int AvailableSoldiers => PlayCoordinator.GetArmySize() - PlayCoordinator.GetCommitedSoldiers();
+        public Vector2 lastInteractedQuestPosition;
 
         public static PlayManager Instance
         {

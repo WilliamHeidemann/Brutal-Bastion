@@ -27,6 +27,7 @@ public class QuestIndicator : MonoBehaviour
     
     public void OnClick()
     {
+        PlayManager.Instance.lastInteractedQuestPosition = GetComponent<RectTransform>().position;
         var go = Instantiate(QuestPresenterPrefab, canvas);
         var qp = go.GetComponent<QuestPresentation>();
         qp.indicator = this;

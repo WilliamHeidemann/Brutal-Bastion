@@ -509,6 +509,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoldierBar
   text: {fileID: 3951282741357046250}
   slider: {fileID: 3684506368923016875}
+  soldierParticle: {fileID: 3224967057667551913, guid: b144e751fe7775294b7e4131fa156c55, type: 3}
+  soldierDrain:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &9021279009221892462
 GameObject:
   m_ObjectHideFlags: 0
