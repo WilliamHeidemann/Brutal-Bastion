@@ -65,7 +65,7 @@ namespace Domain.Incentives
             string amount = change.ChangeType switch
             {
                 ChangeType.Value => $"{FormatSigned(change.Value)}",
-                ChangeType.Percentage when change.Value != 0 => $"{FormatSigned(100f / change.Value):0.#}%",
+                ChangeType.Percentage when change.Value != 0 => $"{FormatSigned(change.Value):0.#}%",
                 ChangeType.Percentage => "0%",
                 _ => "0"
             };

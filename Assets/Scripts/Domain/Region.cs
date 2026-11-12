@@ -40,7 +40,7 @@ namespace Domain
 
         public static string Format(this IEnumerable<Region> regions)
         {
-            if (regions == null || regions.Count() == 0 || regions.Count() == Enum.GetValues(typeof(Region)).Length)
+            if (regions == null || regions.Count() == 0 || regions.Contains(Region.All) || regions.Count() == Enum.GetValues(typeof(Region)).Length - 1)
             {
                 return Region.All.Format();
             }
@@ -70,6 +70,19 @@ namespace Domain
                 Region.All => standardRegions.ElementAt(Random.Range(0, standardRegions.Count)),
                 _ => region,
             };
+        }
+
+        public static List<Region> Resolve(this IEnumerable<Region> regions)
+        {
+            List<Region> standardRegions = new List<Region>()
+            {
+                Region.Orchid,
+                Region.Ashmound,
+                Region.Argot,
+                Region.Barrow,
+            };
+            
+            return regions.Contains(Region.All) ? standardRegions : regions.ToList();
         }
     }
 }

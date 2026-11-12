@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Domain;
 using Domain.Incentives;
+using Domain.Modifiers;
 using Domain.Quests;
 using UnityEngine;
+using Attribute = Domain.Modifiers.Attribute;
 using Random = UnityEngine.Random;
 
 [CreateAssetMenu(fileName = "Quest", menuName = "Quests/Quest")]
@@ -23,6 +26,18 @@ public class QuestObject : ScriptableObject
 
     public Quest Convert()
     {
+        Incentive reward;
+        if (Success.Arcanas.Count > 0)
+            reward = Success.Arcanas[0].GetModifier();
+        else
+            reward = new CurrencyIncentive(Success.Soldiers.Collapse(), Currency.ArmySize);
+
+        Incentive penalty;
+        if (Failure.Arcanas.Count > 0)
+            penalty = Failure.Arcanas[0].GetModifier();
+        else
+            penalty = new CurrencyIncentive(-Failure.Soldiers.Collapse(), Currency.ArmySize);
+        
         return new Quest
         {
             Title = Title,
@@ -30,8 +45,8 @@ public class QuestObject : ScriptableObject
             Region = Region.Resolve(),
             DaysToComplete = DaysToComplete.Collapse(),
             Requirement = Cost.Collapse(),
-            Reward = new CurrencyIncentive(Success.Soldiers.Collapse(), Currency.ArmySize),
-            Penalty = new CurrencyIncentive(-Failure.Soldiers.Collapse(), Currency.ArmySize),
+            Reward = reward,
+            Penalty = penalty,
         };
     }
 
@@ -81,6 +96,8 @@ public class Range
      */
     public int Collapse()
     {
+        if (steps == 0)
+            steps = 1;
         int steprange = (Max-Min) / steps;
         return Random.Range(0, steprange)*steps + Min;
     }
@@ -90,6 +107,7 @@ public class Range
 public class QuestCondition
 {
     public Range Days = new Range{Min = -1, Max = -1};
+    public Range Lives = new Range{Min = -1, Max = -1};
     public List<string> Flags;
 
     public bool Test(GameState state)
@@ -100,6 +118,12 @@ public class QuestCondition
         // There is a maximum day on a quest, and at most that many days have elapsed.
         if (Days.Max >= 0 && Days.Max >= state.Day)
             return false;
+        // There is a minimum life on a quest, and the player has at least that many lives.
+        if (Lives.Min >= 0 && Lives.Min <= state.Lives)
+            return false;
+        // There is a maximum life on a quest, and the player has at most that many lives.
+        if (Lives.Max >= 0 && Lives.Max >= state.Lives)
+            return false;
         return Flags.All(flag => state.flags.Contains(flag));
     }
 }
@@ -109,6 +133,84 @@ public class Consequence
 {
     public Range Soldiers = new Range{Min = 50,  Max = 300, steps = 25};
     public Range Lives = new Range{Min = 0, Max = 3};
+    public List<Arcana> Arcanas = new List<Arcana>();
     public List<string> FlagstoAdd;
     public List<string> FlagstoRemove;
+}
+
+[Serializable]
+public class Arcana
+{
+    public ArcanaType type;
+    public TimeOfEffect timeOfEffect;
+    public Range magnitude = new Range{Min = -1, Max = 1};
+    public Range duration = new Range{Min = 1, Max = 3};
+    public List<Region> regions = new List<Region>();
+    public Range regionAmount = new Range{Min = 1, Max = 1};
+}
+
+public enum ArcanaType
+{
+    Soldiers,
+    SoldiersPercentage,
+    Lives,
+    LivesPercentage,
+}
+
+public static class ArcanaExtensions
+{
+    public static Attribute GetAttribute(this ArcanaType type) => type switch
+    {
+        ArcanaType.Soldiers => Attribute.ArmySize,
+        ArcanaType.Lives => Attribute.Lives,
+        _ => Attribute.ArmySize,
+    };
+
+    public static ChangeType GetChangeType(this ArcanaType type) => type switch
+    {
+        ArcanaType.Soldiers => ChangeType.Value,
+        ArcanaType.Lives => ChangeType.Value,
+        ArcanaType.SoldiersPercentage => ChangeType.Percentage,
+        ArcanaType.LivesPercentage => ChangeType.Percentage,
+        _ => ChangeType.Value,
+    };
+    
+    public static ModifierIncentive GetModifier(this Arcana arcana)
+    {
+        int duration = arcana.duration.Collapse();
+        if (duration == 0)
+            duration = 1;
+        
+        int magnitude = arcana.magnitude.Collapse();
+        List<Region> regions = arcana.regions.Resolve();
+        
+        int regionAmount = arcana.regionAmount.Collapse();
+        if (regionAmount == 0)
+            regionAmount = 1;
+        regionAmount = Math.Min(regionAmount, regions.Count);
+
+        while (regions.Count > regionAmount)
+        {
+            int i = Random.Range(0, regions.Count);
+            regions.RemoveAt(i);
+        }
+
+
+        ValueChange valueChange = new ValueChange
+        {
+            Attribute = arcana.type.GetAttribute(),
+            ChangeType = arcana.type.GetChangeType(),
+            TimeOfEffect = arcana.timeOfEffect,
+            Value = magnitude,
+        };
+
+        IncentiveModifier mod = new IncentiveModifier
+        {
+            Changes = new List<ValueChange> { valueChange },
+            Duration = duration == -1 ? new InfiniteDuration() : new LimitedDuration { TurnsLeft = duration },
+            ToAffect = regions,
+        };
+
+        return new ModifierIncentive(mod);
+    }
 }

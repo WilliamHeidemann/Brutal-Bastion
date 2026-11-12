@@ -96,7 +96,7 @@ namespace Domain
             return valueChange.ChangeType switch
             {
                 ChangeType.Value => valueChange.Value,
-                ChangeType.Percentage => 1f / valueChange.Value * baseAmount,
+                ChangeType.Percentage => (1f + 1f * valueChange.Value) * baseAmount,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
