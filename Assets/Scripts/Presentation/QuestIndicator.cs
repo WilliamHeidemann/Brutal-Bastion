@@ -20,6 +20,8 @@ public class QuestIndicator : MonoBehaviour
 
     private void Start()
     {
+        float scaleFactor = (float) Math.Sqrt((float)Quest.Requirement / 200);
+        transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
         GetComponent<Image>().sprite = null;
         GetComponent<Image>().color = new Color(0, 0, 0, 0);
         GetComponent<FlipSprite>().Flip(DeclineSprite);
