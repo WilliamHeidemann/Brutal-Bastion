@@ -86,8 +86,16 @@ public class QuestManager : MonoBehaviour
     {
         // Spawn indicators for new quests.
         var quests = PlayManager.Instance.PlayCoordinator.GetOfferedQuests();
+        StartCoroutine(SpawnIndicatorCoroutine(quests));
+    }
+
+    private IEnumerator SpawnIndicatorCoroutine(IEnumerable<Quest> quests)
+    {
         foreach (var quest in quests)
+        {
             SpawnIndicator(quest);
+            yield return new WaitForSeconds(secondsBetweenIndicators);
+        }
     }
 
     private void SpawnIndicator(Quest quest)

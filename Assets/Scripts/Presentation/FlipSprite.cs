@@ -14,7 +14,7 @@ public class FlipSprite : MonoBehaviour
     [SerializeField] private float timeToFlip;
     private float timeSinceStart = 0.0f;
 
-    private void Start()
+    private void Awake()
     {
         _image = GetComponent<Image>();
     }
@@ -49,12 +49,15 @@ public class FlipSprite : MonoBehaviour
         {
             _image.sprite = newSprite;
             degrees -= 180;
+            _image.color = Color.white;
             if (destroy)
                 Destroy(gameObject);
         }
         else
         {
             _image.sprite = oldSprite;
+            if (oldSprite == null)
+                _image.color = new Color(0, 0, 0, 0);
         }
         
         transform.localEulerAngles = new Vector3(0, degrees, 0);

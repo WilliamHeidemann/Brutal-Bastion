@@ -20,8 +20,9 @@ public class QuestIndicator : MonoBehaviour
 
     private void Start()
     {
-        //GetComponent<Image>().sprite = null;
-        GetComponent<FlipSprite>().Flip(AcceptSprite);
+        GetComponent<Image>().sprite = null;
+        GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        GetComponent<FlipSprite>().Flip(DeclineSprite);
     }
     
     public void OnClick()

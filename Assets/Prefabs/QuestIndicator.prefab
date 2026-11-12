@@ -151,6 +151,7 @@ MonoBehaviour:
   AcceptSprite: {fileID: 1348651768671927897, guid: df74e53622e5f874d9283f524c44ffc7, type: 3}
   QuestPresenterPrefab: {fileID: 3024419059132865198, guid: 18e09f2c3a5305de7a587a845f8585b0, type: 3}
   _audioService: {fileID: 0}
+  canvas: {fileID: 0}
 --- !u!114 &5746115247705004261
 MonoBehaviour:
   m_ObjectHideFlags: 0

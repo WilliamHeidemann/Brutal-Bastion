@@ -38,10 +38,10 @@ public class QuestObject : ScriptableObject
         List<Incentive> penalty = new List<Incentive>();
         int soldiersFail = Failure.Soldiers.Collapse();
         if (soldiersFail != 0)
-            penalty.Add(new CurrencyIncentive(soldiersFail, Currency.ArmySize));
+            penalty.Add(new CurrencyIncentive(-soldiersFail, Currency.ArmySize));
         int failLives = Failure.Lives.Collapse();
         if (failLives != 0)
-            penalty.Add(new CurrencyIncentive(failLives, Currency.Lives));
+            penalty.Add(new CurrencyIncentive(-failLives, Currency.Lives));
         penalty.AddRange(Failure.Arcanas.Select(a => a.GetModifier()));
         
         return new Quest
