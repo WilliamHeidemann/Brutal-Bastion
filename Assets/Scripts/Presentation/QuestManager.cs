@@ -21,9 +21,21 @@ public class QuestManager : MonoBehaviour
         new () {region = Region.Argot},
         new() {region = Region.Barrow},
     };
-    private Dictionary<Region, Spawner> _spawners  = new();
+    private Dictionary<Region, Spawner> _spawners = new()
+    {
+        {Region.Orchid , new ()},
+        {Region.Ashmound, new ()},
+        {Region.Argot, new ()},
+        {Region.Barrow, new ()},
+    };
     [SerializeField] private float minDistanceBetweenIndicators = 50f;
-    private List<GameObject> indicators = new List<GameObject>();
+    private Dictionary<Region, List<GameObject>> indicators = new()
+    {
+        {Region.Orchid , new ()},
+        {Region.Ashmound, new ()},
+        {Region.Argot, new ()},
+        {Region.Barrow, new ()},
+    };
     public FmodAudioService _audioService;
 
     private void Start()
@@ -55,9 +67,10 @@ public class QuestManager : MonoBehaviour
     public void UpdateQuests()
     {
         // Get rid of old indicators.
-        foreach (var indicator in indicators) 
+        foreach (var indicator in indicators.Values.SelectMany(region => region))
             Destroy(indicator);
-        indicators.Clear();
+        foreach (var region in indicators.Values)
+            region.Clear();
         
         // Spawn indicators for new quests.
         var quests = PlayManager.Instance.PlayCoordinator.GetOfferedQuests();
@@ -68,19 +81,20 @@ public class QuestManager : MonoBehaviour
     private void SpawnIndicator(Quest quest)
     {
         var go = Instantiate(QuestIndicator, _spawners[quest.Region].position);
-        indicators.Add(go);
         
         var r = Random.insideUnitCircle * _spawners[quest.Region].radius;
         go.transform.localPosition = new Vector3(r.x, r.y, 0);
-        /*float minDist = minDistanceBetweenIndicators;
-        while (indicators.Any(i => Vector3.Distance(i.transform.position, go.transform.position) < minDist))
+        float minDist = minDistanceBetweenIndicators;
+        while (indicators[quest.Region].Any(i => Vector3.Distance(i.transform.position, go.transform.position) < minDist))
         {
             // Indicator was spawned too close to other indicator. Try again.
             r = Random.insideUnitCircle * _spawners[quest.Region].radius;
             go.transform.localPosition = new Vector3(r.x, r.y, 0);
             // Lower threshold, to ensure eventual valid position is found, even at cost of overlap.
             minDist *= .99f;
-        }*/
+        }
+        
+        indicators[quest.Region].Add(go);
         
         var qi = go.GetComponent<QuestIndicator>();
         qi.Quest = quest;
