@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Domain;
@@ -12,6 +13,7 @@ public class QuestManager : MonoBehaviour
 {
     [SerializeField] private QuestList _questList;
     [SerializeField] private GameObject QuestIndicator;
+    [SerializeField] private float secondsBetweenIndicators = 0.2f;
     [SerializeField] private int questsToDraw = 3;
     [SerializeField] private Transform canvas;
     [SerializeField] private List<Spawner> spawners = new()
@@ -46,6 +48,22 @@ public class QuestManager : MonoBehaviour
         GenerateQuests();
     }
 
+    public void RemoveQuests()
+    {
+        StartCoroutine(RemoveQuestsCoroutine(indicators.Values.SelectMany(region => region)));
+        foreach (var region in indicators.Values)
+            region.Clear();
+    }
+
+    private IEnumerator RemoveQuestsCoroutine(IEnumerable<GameObject> indicators)
+    {
+        foreach (var indicator in indicators)
+        {
+            Destroy(indicator);
+            yield return new WaitForSeconds(secondsBetweenIndicators);
+        }
+    }
+
     public void GenerateQuests()
     {
         var quests = new List<Quest>();
@@ -66,12 +84,6 @@ public class QuestManager : MonoBehaviour
 
     public void UpdateQuests()
     {
-        // Get rid of old indicators.
-        foreach (var indicator in indicators.Values.SelectMany(region => region))
-            Destroy(indicator);
-        foreach (var region in indicators.Values)
-            region.Clear();
-        
         // Spawn indicators for new quests.
         var quests = PlayManager.Instance.PlayCoordinator.GetOfferedQuests();
         foreach (var quest in quests)
