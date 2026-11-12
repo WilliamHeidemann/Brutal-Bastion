@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStarter
   canvas: {fileID: 1661252317}
-  waitBeforeStart: 3.5
+  waitBeforeStart: 6
   OnGameStart:
     m_PersistentCalls:
       m_Calls:
