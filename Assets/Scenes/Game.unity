@@ -1513,6 +1513,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrateLid
       objectReference: {fileID: 0}
+    - target: {fileID: 1327545693884377480, guid: 75e74cbb027a87d4286e06321c4afed4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
