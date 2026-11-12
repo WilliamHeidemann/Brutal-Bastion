@@ -1,3 +1,4 @@
+using System;
 using Domain;
 using UnityEngine;
 
@@ -22,6 +23,17 @@ namespace Presentation
                 
                 return _instance;
             }
+        }
+
+        private void Awake()
+        {
+            PlayCoordinator.OnNewDay += ResetLastInteractedQuestPosition;
+        }
+        
+        private void ResetLastInteractedQuestPosition()
+        {
+            // Set last interacted to center of screen.
+            lastInteractedQuestPosition = new Vector2(Screen.width / 2, Screen.height / 2);
         }
     }
 }
