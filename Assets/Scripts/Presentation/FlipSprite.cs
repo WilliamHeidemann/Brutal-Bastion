@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class FlipSprite : MonoBehaviour
 {
     private bool flipping = false;
+    private bool destroy = false;
     private Image _image;
     private Sprite newSprite;
     private Sprite oldSprite;
@@ -26,6 +27,15 @@ public class FlipSprite : MonoBehaviour
         newSprite = sprite;
     }
 
+    public void FlipDestroy()
+    {
+        timeSinceStart =  0.0f;
+        flipping = true;
+        oldSprite = _image.sprite;
+        newSprite = null;
+        destroy = true;
+    }
+
     private void Update()
     {
         if (!flipping)
@@ -39,6 +49,8 @@ public class FlipSprite : MonoBehaviour
         {
             _image.sprite = newSprite;
             degrees -= 180;
+            if (destroy)
+                Destroy(gameObject);
         }
         else
         {

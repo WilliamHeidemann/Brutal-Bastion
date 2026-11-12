@@ -50,7 +50,7 @@ public class QuestManager : MonoBehaviour
 
     public void RemoveQuests()
     {
-        StartCoroutine(RemoveQuestsCoroutine(indicators.Values.SelectMany(region => region)));
+        StartCoroutine(RemoveQuestsCoroutine(indicators.Values.SelectMany(region => region).ToList()));
         foreach (var region in indicators.Values)
             region.Clear();
     }
@@ -59,7 +59,7 @@ public class QuestManager : MonoBehaviour
     {
         foreach (var indicator in indicators)
         {
-            Destroy(indicator);
+            indicator.GetComponent<FlipSprite>().FlipDestroy();
             yield return new WaitForSeconds(secondsBetweenIndicators);
         }
     }
