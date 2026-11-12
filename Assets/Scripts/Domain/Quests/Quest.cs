@@ -13,8 +13,8 @@ namespace Domain.Quests
         public string Description;
         public int DaysToComplete;
         public int Requirement;
-        public Incentive Reward;
-        public Incentive Penalty;
+        public List<Incentive> Reward;
+        public List<Incentive> Penalty;
         public Region Region;
     }
 }

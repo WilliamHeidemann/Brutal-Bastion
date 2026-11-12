@@ -11,8 +11,8 @@ namespace Domain.Quests
             {
                 DaysToComplete = Random.Range(1, 4),
                 Requirement = Random.Range(1, 4) * 100,
-                Reward = IncentiveGenerator.GenerateReward(),
-                Penalty = IncentiveGenerator.GeneratePenalty(),
+                Reward = new () {IncentiveGenerator.GenerateReward()},
+                Penalty = new () { IncentiveGenerator.GeneratePenalty() },
                 Region = Region.Orchid
             };
         }

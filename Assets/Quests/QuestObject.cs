@@ -26,17 +26,23 @@ public class QuestObject : ScriptableObject
 
     public Quest Convert()
     {
-        Incentive reward;
-        if (Success.Arcanas.Count > 0)
-            reward = Success.Arcanas[0].GetModifier();
-        else
-            reward = new CurrencyIncentive(Success.Soldiers.Collapse(), Currency.ArmySize);
+        List<Incentive> reward = new List<Incentive>();
+        int soldiersSuccess = Success.Soldiers.Collapse();
+        if (soldiersSuccess != 0)
+            reward.Add(new CurrencyIncentive(soldiersSuccess, Currency.ArmySize));
+        int successLives = Success.Lives.Collapse();
+        if (successLives != 0)
+            reward.Add(new CurrencyIncentive(successLives, Currency.Lives));
+        reward.AddRange(Success.Arcanas.Select(a => a.GetModifier()));
 
-        Incentive penalty;
-        if (Failure.Arcanas.Count > 0)
-            penalty = Failure.Arcanas[0].GetModifier();
-        else
-            penalty = new CurrencyIncentive(-Failure.Soldiers.Collapse(), Currency.ArmySize);
+        List<Incentive> penalty = new List<Incentive>();
+        int soldiersFail = Failure.Soldiers.Collapse();
+        if (soldiersFail != 0)
+            penalty.Add(new CurrencyIncentive(soldiersFail, Currency.ArmySize));
+        int failLives = Failure.Lives.Collapse();
+        if (failLives != 0)
+            penalty.Add(new CurrencyIncentive(failLives, Currency.Lives));
+        penalty.AddRange(Failure.Arcanas.Select(a => a.GetModifier()));
         
         return new Quest
         {
@@ -61,6 +67,11 @@ public static class QuestExtensions
     public static List<QuestObject> Prune(this IEnumerable<QuestObject> quests, PlayCoordinator playCoordinator)
     {
         return quests.Where(playCoordinator.IsQuestValid).ToList();
+    }
+
+    public static string GetDescription(this IEnumerable<Incentive> incentives)
+    {
+        return string.Join("\n", incentives.Select(i => i.GetDescription()));
     }
 
     public static int WeightSum(this IEnumerable<QuestObject> quests)
@@ -147,6 +158,45 @@ public class Arcana
     public Range duration = new Range{Min = 1, Max = 3};
     public List<Region> regions = new List<Region>();
     public Range regionAmount = new Range{Min = 1, Max = 1};
+    
+    public ModifierIncentive GetModifier()
+    {
+        int duration = this.duration.Collapse();
+        if (duration == 0)
+            duration = 1;
+        
+        int magnitude = this.magnitude.Collapse();
+        List<Region> regions = this.regions.Resolve();
+        
+        int regionAmount = this.regionAmount.Collapse();
+        if (regionAmount == 0)
+            regionAmount = 1;
+        regionAmount = Math.Min(regionAmount, regions.Count);
+
+        while (regions.Count > regionAmount)
+        {
+            int i = Random.Range(0, regions.Count);
+            regions.RemoveAt(i);
+        }
+
+
+        ValueChange valueChange = new ValueChange
+        {
+            Attribute = type.GetAttribute(),
+            ChangeType = type.GetChangeType(),
+            TimeOfEffect = timeOfEffect,
+            Value = magnitude,
+        };
+
+        IncentiveModifier mod = new IncentiveModifier
+        {
+            Changes = new List<ValueChange> { valueChange },
+            Duration = duration == -1 ? new InfiniteDuration() : new LimitedDuration { TurnsLeft = duration },
+            ToAffect = regions,
+        };
+
+        return new ModifierIncentive(mod);
+    }
 }
 
 public enum ArcanaType
@@ -174,43 +224,4 @@ public static class ArcanaExtensions
         ArcanaType.LivesPercentage => ChangeType.Percentage,
         _ => ChangeType.Value,
     };
-    
-    public static ModifierIncentive GetModifier(this Arcana arcana)
-    {
-        int duration = arcana.duration.Collapse();
-        if (duration == 0)
-            duration = 1;
-        
-        int magnitude = arcana.magnitude.Collapse();
-        List<Region> regions = arcana.regions.Resolve();
-        
-        int regionAmount = arcana.regionAmount.Collapse();
-        if (regionAmount == 0)
-            regionAmount = 1;
-        regionAmount = Math.Min(regionAmount, regions.Count);
-
-        while (regions.Count > regionAmount)
-        {
-            int i = Random.Range(0, regions.Count);
-            regions.RemoveAt(i);
-        }
-
-
-        ValueChange valueChange = new ValueChange
-        {
-            Attribute = arcana.type.GetAttribute(),
-            ChangeType = arcana.type.GetChangeType(),
-            TimeOfEffect = arcana.timeOfEffect,
-            Value = magnitude,
-        };
-
-        IncentiveModifier mod = new IncentiveModifier
-        {
-            Changes = new List<ValueChange> { valueChange },
-            Duration = duration == -1 ? new InfiniteDuration() : new LimitedDuration { TurnsLeft = duration },
-            ToAffect = regions,
-        };
-
-        return new ModifierIncentive(mod);
-    }
 }

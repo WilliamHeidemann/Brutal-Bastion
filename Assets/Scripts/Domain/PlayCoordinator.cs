@@ -106,16 +106,19 @@ namespace Domain
             foreach (Quest completedQuest in _activeQuests.PassDay())
             {
                 _gameState.ArmySize += completedQuest.Requirement;
-                completedQuest.Reward.Modify(_gameState);
-
-                if (completedQuest.Reward is CurrencyIncentive currencyIncentive)
+                foreach (var reward in completedQuest.Reward)
                 {
-                    GainBonuses(currencyIncentive, completedQuest);
-                }
+                    reward.Modify(_gameState);
 
-                if (completedQuest.Reward is ModifierIncentive modifierIncentive)
-                {
-                    modifierIncentive.Modify(_gameState);
+                    if (reward is CurrencyIncentive currencyIncentive)
+                    {
+                        GainBonuses(currencyIncentive, completedQuest);
+                    }
+
+                    if (reward is ModifierIncentive modifierIncentive)
+                    {
+                        modifierIncentive.Modify(_gameState);
+                    }
                 }
             }
         }
@@ -145,16 +148,19 @@ namespace Domain
         {
             foreach (Quest declinedQuest in _offeredQuests.DeclinedQuests)
             {
-                declinedQuest.Penalty.Modify(_gameState);
-
-                if (declinedQuest.Penalty is CurrencyIncentive currencyIncentive)
+                foreach (var penalty in declinedQuest.Penalty)
                 {
-                    GainPenaltyBonuses(currencyIncentive, declinedQuest);
-                }
+                    penalty.Modify(_gameState);
 
-                if (declinedQuest.Penalty is ModifierIncentive modifierIncentive)
-                {
-                    modifierIncentive.Modify(_gameState);
+                    if (penalty is CurrencyIncentive currencyIncentive)
+                    {
+                        GainPenaltyBonuses(currencyIncentive, declinedQuest);
+                    }
+
+                    if (penalty is ModifierIncentive modifierIncentive)
+                    {
+                        modifierIncentive.Modify(_gameState);
+                    }
                 }
             }
         }

@@ -19,8 +19,8 @@ namespace Tests
                 DaysToComplete = 1,
                 Requirement = 1,
                 Region = Region.Orchid,
-                Reward = new CurrencyIncentive(2, Currency.Lives),
-                Penalty = new CurrencyIncentive(0, Currency.Lives)
+                Reward = new () { new CurrencyIncentive(2, Currency.Lives) },
+                Penalty = new () { new CurrencyIncentive(0, Currency.Lives) }
             };
 
             playCoordinator.SetQuestsForTheDay(new List<Quest> { oneDayQuest });
@@ -43,8 +43,8 @@ namespace Tests
                 DaysToComplete = 2,
                 Requirement = 100,
                 Region = Region.Orchid,
-                Reward = new CurrencyIncentive(200, Currency.ArmySize),
-                Penalty = new CurrencyIncentive(0, Currency.Lives)
+                Reward = new() { new CurrencyIncentive(200, Currency.ArmySize) },
+                Penalty = new () { new CurrencyIncentive(0, Currency.Lives) }
             };
 
             Assert.That(gameState.ArmySize, Is.EqualTo(1000));
@@ -72,8 +72,8 @@ namespace Tests
                 DaysToComplete = 1,
                 Requirement = 1,
                 Region = Region.Orchid,
-                Reward = new CurrencyIncentive(1, Currency.Lives),
-                Penalty = new CurrencyIncentive(0, Currency.Lives)
+                Reward = new () { new CurrencyIncentive(1, Currency.Lives) },
+                Penalty = new() { new CurrencyIncentive(0, Currency.Lives) }
             };
 
             Quest armyQuest = new Quest
@@ -81,8 +81,8 @@ namespace Tests
                 DaysToComplete = 1,
                 Requirement = 1,
                 Region = Region.Ashmound,
-                Reward = new CurrencyIncentive(200, Currency.ArmySize),
-                Penalty = new CurrencyIncentive(0, Currency.Lives)
+                Reward = new () { new CurrencyIncentive(200, Currency.ArmySize) },
+                Penalty = new () { new CurrencyIncentive(0, Currency.Lives) }
             };
 
             playCoordinator.SetQuestsForTheDay(new List<Quest> { lifeQuest, armyQuest });
@@ -105,8 +105,8 @@ namespace Tests
                 DaysToComplete = 1,
                 Requirement = 1,
                 Region = Region.Orchid,
-                Reward = new CurrencyIncentive(0, Currency.Lives),
-                Penalty = new CurrencyIncentive(-2, Currency.Lives)
+                Reward = new() { new CurrencyIncentive(0, Currency.Lives) },
+                Penalty = new() { new CurrencyIncentive(-2, Currency.Lives) }
             };
 
             playCoordinator.SetQuestsForTheDay(new List<Quest> { declinedQuest });
@@ -142,8 +142,8 @@ namespace Tests
                 DaysToComplete = 1,
                 Requirement = 1,
                 Region = Region.Orchid,
-                Reward = new ModifierIncentive(pickupModifier),
-                Penalty = new CurrencyIncentive(0, Currency.Lives)
+                Reward = new () { new ModifierIncentive(pickupModifier) },
+                Penalty = new() { new CurrencyIncentive(0, Currency.Lives) }
             };
 
             Assert.That(gameState.Modifiers.Count, Is.EqualTo(0));
