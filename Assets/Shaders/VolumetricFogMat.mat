@@ -37,7 +37,10 @@ Material:
     - _NoiseOffset: 0.1
     - _NoiseTiling: 173.8
     - _StepSize: 0.1
+    - _XCutOff: 1.75
     - _YCutOff: 0.3
+    - _YSmooth: 0.2
+    - _ZCutOff: 1
     m_Colors:
     - _FogColor: {r: 0.8820755, g: 0.9941038, b: 1, a: 1}
     - _FogDirection: {r: 0.5, g: -1, b: 0.2, a: 0}
