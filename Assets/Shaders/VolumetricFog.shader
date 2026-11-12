@@ -19,6 +19,8 @@ Shader "Custom/VolumetricFog"
         _LightScattering("Light Scattering", Range(0, 1)) = 0.2
         
         _YCutOff("Y Cut-off", float) = 0
+        _XCutOff("X Cut-Off", float) = 1.75
+        _ZCutOff("Z Cut-off", float) = 1
     }
 
     SubShader
@@ -56,6 +58,8 @@ Shader "Custom/VolumetricFog"
             float _LightScattering;
             
             float _YCutOff;
+            float _XCutOff;
+            float _ZCutOff;
             
             float heyney_greenstein(float angle, float scattering)
             {
@@ -65,6 +69,10 @@ Shader "Custom/VolumetricFog"
             float get_density(float3 worldPos)
             {
                 if (worldPos.y > _YCutOff)
+                    return 0;
+                if (abs(worldPos.x) > _XCutOff)
+                    return 0;
+                if (abs(worldPos.z) > _ZCutOff)
                     return 0;
                 float4 noise = _FogNoise.SampleLevel(sampler_TrilinearRepeat, (worldPos + _FogDirection*_Time.y*_FogSpeed) * 0.01 * _NoiseTiling, 0);
                 float density = dot(noise, noise);
