@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 130823651}
   - component: {fileID: 130823650}
   - component: {fileID: 130823653}
+  - component: {fileID: 130823654}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -206,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 130823649}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.81208354, z: -0.5835412, w: 0}
-  m_LocalPosition: {x: -0.03, y: 1.68, z: 0.8}
+  m_LocalPosition: {x: -0.03, y: 3.009, z: 0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -256,6 +257,28 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!95 &130823654
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130823649}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e6016787d60501b4e90b90919dee4615, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!224 &150140548 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5860356320841480787, guid: 745a73f2a4b4bd6e49242d9ce57ac3b2, type: 3}
@@ -619,6 +642,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd4fb0a09a8be84894ff753f7357fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStarter
+  canvas: {fileID: 1661252317}
+  waitBeforeStart: 3.5
+  OnGameStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 130823654}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ZoomIn
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnGameStartAfterDelay:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1661252317}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &1812822510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,6 +1437,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 84683020069315560, guid: 75e74cbb027a87d4286e06321c4afed4, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 84683020069315560, guid: 75e74cbb027a87d4286e06321c4afed4, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 84683020069315560, guid: 75e74cbb027a87d4286e06321c4afed4, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1760213282}
+    - target: {fileID: 84683020069315560, guid: 75e74cbb027a87d4286e06321c4afed4, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 84683020069315560, guid: 75e74cbb027a87d4286e06321c4afed4, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: StartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 84683020069315560, guid: 75e74cbb027a87d4286e06321c4afed4, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: GameStarter, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 84683020069315560, guid: 75e74cbb027a87d4286e06321c4afed4, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
+      value: OpenCrate
+      objectReference: {fileID: 0}
+    - target: {fileID: 84683020069315560, guid: 75e74cbb027a87d4286e06321c4afed4, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 375258481626065055, guid: 75e74cbb027a87d4286e06321c4afed4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
