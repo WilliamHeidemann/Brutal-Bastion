@@ -19,6 +19,7 @@ Shader "Custom/VolumetricFog"
         _LightScattering("Light Scattering", Range(0, 1)) = 0.2
         
         _YCutOff("Y Cut-off", float) = 0
+        _YSmoothing("Y Smoothing", float) = .2
         _XCutOff("X Cut-Off", float) = 1.75
         _ZCutOff("Z Cut-off", float) = 1
     }
@@ -58,6 +59,7 @@ Shader "Custom/VolumetricFog"
             float _LightScattering;
             
             float _YCutOff;
+            float _YSmoothing;
             float _XCutOff;
             float _ZCutOff;
             
@@ -77,6 +79,13 @@ Shader "Custom/VolumetricFog"
                 float4 noise = _FogNoise.SampleLevel(sampler_TrilinearRepeat, (worldPos + _FogDirection*_Time.y*_FogSpeed) * 0.01 * _NoiseTiling, 0);
                 float density = dot(noise, noise);
                 density = saturate(density - _DensityThreshold) * _DensityMultiplier;
+
+                if (worldPos.y > _YCutOff - _YSmoothing)
+                {
+                    float margin = (_YCutOff - worldPos.y)/_YSmoothing;
+                    density *= margin;
+                }
+                
                 return density;
             }
 
