@@ -810,6 +810,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 745a73f2a4b4bd6e49242d9ce57ac3b2, type: 3}
+--- !u!114 &1068516903597655730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5635042156543165766, guid: 745a73f2a4b4bd6e49242d9ce57ac3b2, type: 3}
+  m_PrefabInstance: {fileID: 1068516903597655729}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d5d7f505e46727c8a8fd3290310afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestManager
 --- !u!1001 &4276796099826503358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1168,6 +1179,34 @@ PrefabInstance:
     - target: {fileID: 3792720800572509669, guid: e59f55aedc562e540be7a743186742dc, type: 3}
       propertyPath: m_Name
       value: NextDayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345947150063519885, guid: e59f55aedc562e540be7a743186742dc, type: 3}
+      propertyPath: OnDayEnd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345947150063519885, guid: e59f55aedc562e540be7a743186742dc, type: 3}
+      propertyPath: OnDayEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345947150063519885, guid: e59f55aedc562e540be7a743186742dc, type: 3}
+      propertyPath: OnDayEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1068516903597655730}
+    - target: {fileID: 6345947150063519885, guid: e59f55aedc562e540be7a743186742dc, type: 3}
+      propertyPath: OnDayEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345947150063519885, guid: e59f55aedc562e540be7a743186742dc, type: 3}
+      propertyPath: OnDayEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RemoveQuests
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345947150063519885, guid: e59f55aedc562e540be7a743186742dc, type: 3}
+      propertyPath: OnDayEnd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: QuestManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345947150063519885, guid: e59f55aedc562e540be7a743186742dc, type: 3}
+      propertyPath: OnDayEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
