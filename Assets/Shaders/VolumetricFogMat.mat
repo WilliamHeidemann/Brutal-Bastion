@@ -38,7 +38,7 @@ Material:
     - _NoiseTiling: 173.8
     - _StepSize: 0.1
     - _XCutOff: 2.05
-    - _YCutOff: 0.39
+    - _YCutOff: 0.2
     - _YSmooth: 0.2
     - _YSmoothing: 0.26
     - _ZCutOff: 1.39
