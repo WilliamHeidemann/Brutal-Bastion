@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191e3d39d6bd15a2bacbfe017bef0976, type: 3}
   m_Name: Rally
   m_EditorClassIdentifier: Assembly-CSharp::QuestObject
-  Title: 
+  Title: Rally
   Description: 
   Region: 4
   DrawWeight: 10
