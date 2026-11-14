@@ -416,7 +416,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3423682627946758409, guid: 7ab17ff92c278c94b9e79ac3a4245fc7, type: 3}
+  m_Sprite: {fileID: 6134751039864755284, guid: c15a3b25c22ab5e42a77f8037b261235, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1289,7 +1289,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3423682627946758409, guid: 7ab17ff92c278c94b9e79ac3a4245fc7, type: 3}
+  m_Sprite: {fileID: -4773196292517953385, guid: f63be9b902091414b8e888281bf6e02a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1360,6 +1360,10 @@ MonoBehaviour:
   region: {fileID: 5457895410440418814}
   reward: {fileID: 1742398734255520545}
   penalty: {fileID: 2063390777279511393}
+  acceptSprite: {fileID: -4773196292517953385, guid: f63be9b902091414b8e888281bf6e02a, type: 3}
+  declineSprite: {fileID: 6134751039864755284, guid: c15a3b25c22ab5e42a77f8037b261235, type: 3}
+  acceptImage: {fileID: 4275019826447069182}
+  declineImage: {fileID: 1947337900257405926}
 --- !u!114 &2549350985505742483
 MonoBehaviour:
   m_ObjectHideFlags: 0
