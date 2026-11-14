@@ -129,9 +129,9 @@ GameObject:
   m_Component:
   - component: {fileID: 130823652}
   - component: {fileID: 130823651}
-  - component: {fileID: 130823650}
   - component: {fileID: 130823653}
   - component: {fileID: 130823654}
+  - component: {fileID: 130823655}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -139,14 +139,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &130823650
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130823649}
-  m_Enabled: 1
 --- !u!20 &130823651
 Camera:
   m_ObjectHideFlags: 0
@@ -279,6 +271,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &130823655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130823649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioListener
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!224 &150140548 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5860356320841480787, guid: 745a73f2a4b4bd6e49242d9ce57ac3b2, type: 3}
@@ -642,6 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd4fb0a09a8be84894ff753f7357fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStarter
+  _audioService: {fileID: 2108115266}
   canvas: {fileID: 1661252317}
   waitBeforeStart: 6
   OnGameStart:
@@ -766,7 +773,7 @@ GameObject:
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -797,8 +804,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e8432e2791358479f568e817858e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Presentation.Audio.FmodAudioService
-  _audioContainer: {fileID: 0}
-  _uiAudioConfig: {fileID: 0}
+  _audioContainer: {fileID: 11400000, guid: 89340ea7b13707742aab825ba64720e3, type: 2}
+  _uiAudioConfig: {fileID: 11400000, guid: 7d7cddce31bd6194c8b90adb7fed491a, type: 2}
 --- !u!224 &2114650784 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 753830066102720620, guid: e59f55aedc562e540be7a743186742dc, type: 3}
@@ -1449,6 +1456,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 84683020069315560, guid: 75e74cbb027a87d4286e06321c4afed4, type: 3}
+      propertyPath: _audioService
+      value: 
+      objectReference: {fileID: 2108115266}
     - target: {fileID: 84683020069315560, guid: 75e74cbb027a87d4286e06321c4afed4, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3

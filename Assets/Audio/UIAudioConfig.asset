@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9df77c808476884d926716edf0597fd, type: 3}
+  m_Name: UIAudioConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Presentation.Audio.UIAudioConfig
+  <_ambient>k__BackingField:
+    Guid: 6d431ea6de315a748a2f98a0122a7979
+    Path: event:/Ambient
+  <_themeMusic>k__BackingField:
+    Guid: 2d2d78ce8eb5f594ba49799acdefea69
+    Path: event:/ThemeMusic
+  <_onClickDrum>k__BackingField:
+    Guid: 81575bb74150e6a4d8cfa835ae4d1f7b
+    Path: event:/OnClickDrum
