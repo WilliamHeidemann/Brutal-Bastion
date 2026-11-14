@@ -22,6 +22,10 @@ MonoBehaviour:
       Min: -1
       Max: -1
       steps: 1
+    Lives:
+      Min: -1
+      Max: -1
+      steps: 1
     Flags: []
   Cost:
     Min: 100
@@ -40,6 +44,7 @@ MonoBehaviour:
       Min: 0
       Max: 3
       steps: 1
+    Arcanas: []
     FlagstoAdd: []
     FlagstoRemove: []
   Failure:
@@ -51,5 +56,21 @@ MonoBehaviour:
       Min: 0
       Max: 3
       steps: 1
+    Arcanas:
+    - type: 0
+      timeOfEffect: 1
+      magnitude:
+        Min: 25
+        Max: 50
+        steps: 25
+      duration:
+        Min: 4
+        Max: 6
+        steps: 1
+      regions: 00000000i
+      regionAmount:
+        Min: 1
+        Max: 1
+        steps: 1
     FlagstoAdd: []
     FlagstoRemove: []

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain.Quests
 {
@@ -32,6 +33,11 @@ namespace Domain.Quests
             }
 
             return completedQuests;
+        }
+
+        public List<Quest> GetQuests()
+        {
+            return _activeQuests.Keys.ToList();
         }
     }
 }

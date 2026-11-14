@@ -60,6 +60,7 @@ namespace Domain
             }
 
             TickModifiers();
+            OnQuestsChanged?.Invoke();
             _offeredQuests.Clear();
             OnNewDay?.Invoke();
         }
@@ -89,6 +90,7 @@ namespace Domain
 
                 _activeQuests.Add(acceptedQuest);
             }
+            OnQuestsChanged?.Invoke();
         }
 
         private static float Bonus(ValueChange valueChange, int baseAmount)
@@ -225,6 +227,7 @@ namespace Domain
         }
 
         public IEnumerable<Quest> GetOfferedQuests() => _offeredQuests.AllQuests;
+        public List<Quest> GetActiveQuests() => _activeQuests.GetQuests();
 
         public bool IsQuestValid(QuestObject quest)
         {
