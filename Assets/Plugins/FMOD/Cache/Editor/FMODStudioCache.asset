@@ -107,7 +107,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/AudioBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639302699198157647
+  lastModified: 639302700478393432
   FileSizes: []
   Exists: 1
 --- !u!114 &-4765395850230951262
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: event:/ThemeMusic
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
   Path: event:/ThemeMusic
-  Guid: 2d2d78ce8eb5f594ba49799acdefea69
+  Guid: 00000000000000000000000000000000
   Banks:
   - {fileID: -5475240473466993156}
   - {fileID: 3447882719504264585}
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: event:/Ambient
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
   Path: event:/Ambient
-  Guid: 6d431ea6de315a748a2f98a0122a7979
+  Guid: 00000000000000000000000000000000
   Banks:
   - {fileID: -9083244504406981282}
   IsStream: 1
@@ -231,7 +231,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/AudioBanks/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639302699198907042
+  lastModified: 639302700478726997
   FileSizes: []
   Exists: 1
 --- !u!114 &-2128913644702982749
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Name: event:/OnClickDrum
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
   Path: event:/OnClickDrum
-  Guid: 81575bb74150e6a4d8cfa835ae4d1f7b
+  Guid: 00000000000000000000000000000000
   Banks:
   - {fileID: -2533338333439286028}
   IsStream: 1
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: event:/OnClickDrum
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
   Path: event:/OnClickDrum
-  Guid: 81575bb74150e6a4d8cfa835ae4d1f7b
+  Guid: 00000000000000000000000000000000
   Banks:
   - {fileID: 4717518199328868202}
   - {fileID: 8346671337991717751}
@@ -364,7 +364,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 9174113080205794511}
   cacheVersion: 131861
-  cacheTime: 639302699199139175
+  cacheTime: 639302700478786075
   SerializableEventsDict:
   - key: event:/ThemeMusic
     index: 0
@@ -387,7 +387,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/AudioBanks/Desktop/Sfx.bank
   Name: Sfx
   StudioPath: bank:/Sfx
-  lastModified: 639302699199139175
+  lastModified: 639302700478786075
   FileSizes: []
   Exists: 1
 --- !u!114 &223130186341830702
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Name: event:/Ambient
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
   Path: event:/Ambient
-  Guid: 6d431ea6de315a748a2f98a0122a7979
+  Guid: 00000000000000000000000000000000
   Banks:
   - {fileID: -5475240473466993156}
   - {fileID: 3447882719504264585}
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Name: event:/ThemeMusic
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
   Path: event:/ThemeMusic
-  Guid: 2d2d78ce8eb5f594ba49799acdefea69
+  Guid: 00000000000000000000000000000000
   Banks:
   - {fileID: -9083244504406981282}
   IsStream: 1
@@ -824,7 +824,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/AudioBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639302699198177668
+  lastModified: 639302700478402802
   FileSizes:
   - Name: 
     Value: 956
