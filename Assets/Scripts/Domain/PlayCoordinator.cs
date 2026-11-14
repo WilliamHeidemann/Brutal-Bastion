@@ -20,6 +20,7 @@ namespace Domain
         public Action OnNewDay;
         public Action OnLivesChanged;
         public Action OnQuestsChanged;
+        public Action OnModifiersChanged;
 
         public void SetQuestsForTheDay(List<Quest> quests)
         {
@@ -123,6 +124,7 @@ namespace Domain
                     }
                 }
             }
+            OnModifiersChanged?.Invoke();
         }
 
         private void GainBonuses(CurrencyIncentive currencyIncentive, Quest completedQuest)
@@ -165,6 +167,7 @@ namespace Domain
                     }
                 }
             }
+            OnModifiersChanged?.Invoke();
         }
 
         private void GainPenaltyBonuses(CurrencyIncentive currencyIncentive, Quest declinedQuest)
@@ -209,6 +212,7 @@ namespace Domain
             {
                 _gameState.Modifiers.Remove(modifier);
             }
+            OnModifiersChanged?.Invoke();
         }
 
         public int GetCommitedSoldiers()
@@ -233,5 +237,7 @@ namespace Domain
         {
             return quest.IsValid(_gameState);
         }
+        
+        public IEnumerable<IncentiveModifier> GetActiveModifiers() => _gameState.Modifiers;
     }
 }
