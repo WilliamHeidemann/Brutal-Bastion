@@ -1,8 +1,8 @@
 using System;
 using Domain;
 using Domain.Quests;
-using Game.Presentation.Audio;
 using Presentation;
+using Presentation.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -11,17 +11,32 @@ public class QuestIndicator : MonoBehaviour
 {
     public Sprite DeclineSprite;
     public Sprite AcceptSprite;
-    public Quest Quest;
+    private Quest _quest;
+
+    public Quest Quest
+    {
+        get { return _quest; }
+        set
+        {
+            _quest = value;
+            gameObject.name = _quest.Title;
+        }
+    }
     public GameObject QuestPresenterPrefab;
     public FmodAudioService _audioService;
     public Transform canvas;
+    
+    [SerializeField] private bool scaleByCost = true;
     
     private bool _accepted = false;
 
     private void Start()
     {
-        float scaleFactor = (float) Math.Sqrt((float)Quest.Requirement / 200);
-        transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+        if (scaleByCost)
+        {
+            float scaleFactor = (float)Math.Sqrt((float)Quest.Requirement / 200);
+            transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+        }
         GetComponent<Image>().sprite = null;
         GetComponent<Image>().color = new Color(0, 0, 0, 0);
         GetComponent<FlipSprite>().Flip(DeclineSprite);

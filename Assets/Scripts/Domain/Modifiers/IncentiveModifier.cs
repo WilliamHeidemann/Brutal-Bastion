@@ -32,7 +32,6 @@ namespace Domain.Modifiers
 
     public enum TimeOfEffect
     {
-        OnPickUp,
         OnReward,
         OnPenalty
     }

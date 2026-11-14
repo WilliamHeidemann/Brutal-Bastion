@@ -20,6 +20,7 @@ namespace Domain
         public Action OnNewDay;
         public Action OnLivesChanged;
         public Action OnQuestsChanged;
+        public Action OnModifiersChanged;
 
         public void SetQuestsForTheDay(List<Quest> quests)
         {
@@ -60,6 +61,7 @@ namespace Domain
             }
 
             TickModifiers();
+            OnQuestsChanged?.Invoke();
             _offeredQuests.Clear();
             OnNewDay?.Invoke();
         }
@@ -68,27 +70,11 @@ namespace Domain
         {
             foreach (Quest acceptedQuest in _offeredQuests.AcceptedQuests)
             {
-                List<ValueChange> pickUpChanges = _gameState.Modifiers
-                    .Where(m => m.ToAffect.Contains(acceptedQuest.Region))
-                    .SelectMany(m => m.Changes)
-                    .Where(vc => vc.TimeOfEffect == TimeOfEffect.OnPickUp)
-                    .ToList();
-
-                float lifeCostBonus = pickUpChanges
-                    .Where(vc => vc.Attribute == Attribute.Lives)
-                    .Sum(vc => Bonus(vc, acceptedQuest.Requirement));
-
-                _gameState.Lives = Mathf.Max(0, _gameState.Lives - (int)lifeCostBonus);
-
-                float armyCostBonus = pickUpChanges
-                    .Where(vc => vc.Attribute == Attribute.ArmySize)
-                    .Sum(vc => Bonus(vc, acceptedQuest.Requirement));
-
-                _gameState.ArmySize =
-                    Mathf.Max(0, _gameState.ArmySize - (int)armyCostBonus - acceptedQuest.Requirement);
-
+                _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize - acceptedQuest.Requirement);
                 _activeQuests.Add(acceptedQuest);
             }
+            
+            OnQuestsChanged?.Invoke();
         }
 
         private static float Bonus(ValueChange valueChange, int baseAmount)
@@ -121,6 +107,7 @@ namespace Domain
                     }
                 }
             }
+            OnModifiersChanged?.Invoke();
         }
 
         private void GainBonuses(CurrencyIncentive currencyIncentive, Quest completedQuest)
@@ -163,6 +150,7 @@ namespace Domain
                     }
                 }
             }
+            OnModifiersChanged?.Invoke();
         }
 
         private void GainPenaltyBonuses(CurrencyIncentive currencyIncentive, Quest declinedQuest)
@@ -207,6 +195,7 @@ namespace Domain
             {
                 _gameState.Modifiers.Remove(modifier);
             }
+            OnModifiersChanged?.Invoke();
         }
 
         public int GetCommitedSoldiers()
@@ -225,10 +214,13 @@ namespace Domain
         }
 
         public IEnumerable<Quest> GetOfferedQuests() => _offeredQuests.AllQuests;
+        public List<Quest> GetActiveQuests() => _activeQuests.GetQuests();
 
         public bool IsQuestValid(QuestObject quest)
         {
             return quest.IsValid(_gameState);
         }
+        
+        public IEnumerable<IncentiveModifier> GetActiveModifiers() => _gameState.Modifiers;
     }
 }

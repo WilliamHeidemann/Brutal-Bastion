@@ -6,7 +6,7 @@ using FMODUnity;
 using UnityEngine;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
-namespace Game.Presentation.Audio
+namespace Presentation.Audio
 {
     public class FmodAudioService : MonoBehaviour, IAudioService
     {

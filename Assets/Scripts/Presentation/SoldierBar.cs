@@ -40,7 +40,6 @@ public class SoldierBar : MonoBehaviour
 
     private IEnumerator Drain(int amount, Vector2 pos)
     {
-        Debug.Log($"Amount: {amount}");
         int mult = amount > 0 ? 1 : -1;
         amount *= mult;
         float time = 0.0f;
