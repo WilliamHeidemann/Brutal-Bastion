@@ -72,6 +72,42 @@ RectTransform:
   m_AnchoredPosition: {x: 448, y: -118}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1816239956374004734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4986676167664391543}
+  m_Layer: 5
+  m_Name: QuestPickerList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4986676167664391543
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816239956374004734}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5860356320841480787}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -690, y: -418}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2112400410598551048
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5860356320841480787}
   - component: {fileID: 5635042156543165766}
+  - component: {fileID: 70635170379903518}
   m_Layer: 5
   m_Name: QuestManager
   m_TagString: Untagged
@@ -215,6 +252,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 961425470059970246}
+  - {fileID: 4986676167664391543}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -236,6 +274,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuestManager
   _questList: {fileID: 11400000, guid: dae24dc184272e9418b3df55440895c3, type: 2}
   QuestIndicator: {fileID: 111048261809516274, guid: 8f9a5d11756ae7e0fb7f80af4b33ebe0, type: 3}
+  secondsBetweenIndicators: 0.2
+  questPickerManager: {fileID: 70635170379903518}
   questsToDraw: 3
   canvas: {fileID: 0}
   spawners:
@@ -253,3 +293,18 @@ MonoBehaviour:
     radius: 100
   minDistanceBetweenIndicators: 100
   _audioService: {fileID: 0}
+--- !u!114 &70635170379903518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4591754623512768805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856f6e03ddc459548a3c214346355968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestPickerManager
+  questPickerPrefab: {fileID: 8582811960714891087, guid: e617bc45bdf82fe45a98859d9984e32c, type: 3}
+  spaceBetweenQuests: {x: 200, y: 0}
+  questPickerParent: {fileID: 4986676167664391543}

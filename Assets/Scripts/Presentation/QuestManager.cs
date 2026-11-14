@@ -14,6 +14,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private QuestList _questList;
     [SerializeField] private GameObject QuestIndicator;
     [SerializeField] private float secondsBetweenIndicators = 0.2f;
+    [SerializeField] private QuestPickerManager questPickerManager;
     [SerializeField] private int questsToDraw = 3;
     [SerializeField] private Transform canvas;
     [SerializeField] private List<Spawner> spawners = new()
@@ -87,6 +88,7 @@ public class QuestManager : MonoBehaviour
         // Spawn indicators for new quests.
         var quests = PlayManager.Instance.PlayCoordinator.GetOfferedQuests();
         StartCoroutine(SpawnIndicatorCoroutine(quests));
+        questPickerManager.UpdateQuests();
     }
 
     private IEnumerator SpawnIndicatorCoroutine(IEnumerable<Quest> quests)

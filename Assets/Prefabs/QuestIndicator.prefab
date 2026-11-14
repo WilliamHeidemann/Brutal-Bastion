@@ -149,9 +149,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuestIndicator
   DeclineSprite: {fileID: -9072301827698758746, guid: 37f51973793c69a4ba548e3e9cabe49e, type: 3}
   AcceptSprite: {fileID: 1348651768671927897, guid: df74e53622e5f874d9283f524c44ffc7, type: 3}
-  QuestPresenterPrefab: {fileID: 3024419059132865198, guid: 18e09f2c3a5305de7a587a845f8585b0, type: 3}
+  QuestPresenterPrefab: {fileID: 8582811960714891087, guid: e617bc45bdf82fe45a98859d9984e32c, type: 3}
   _audioService: {fileID: 0}
   canvas: {fileID: 0}
+  scaleByCost: 1
 --- !u!114 &5746115247705004261
 MonoBehaviour:
   m_ObjectHideFlags: 0
