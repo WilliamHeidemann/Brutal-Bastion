@@ -22,7 +22,6 @@ public class ActiveQuestManager : MonoBehaviour
     {
         var newQuests = PlayManager.Instance.PlayCoordinator.GetActiveQuests();
         var allQuests = newQuests.Union(activeQuests.Keys);
-        Debug.Log($"New Active Quests: {newQuests.Count}");
         foreach (var quest in allQuests)
         {
             if (!newQuests.Contains(quest) && activeQuests.ContainsKey(quest))
@@ -43,7 +42,6 @@ public class ActiveQuestManager : MonoBehaviour
             .Select(q => q.Value)
             .ToList();
 
-        Debug.Log($"Quests: {activeQuests.Count}");
         for (int i = 0;  i < orderedIndicators.Count; i++)
         {
             var dest = i * spaceBetweenQuests;

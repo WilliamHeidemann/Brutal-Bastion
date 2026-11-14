@@ -16,7 +16,7 @@ public class FlipSprite : MonoBehaviour
 
     private void Awake()
     {
-        _image = GetComponent<Image>();
+        _image = GetComponentInChildren<Image>();
     }
     
     public void Flip(Sprite sprite)
