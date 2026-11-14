@@ -15,7 +15,7 @@ MonoBehaviour:
   Title: Penguins!
   Description: They're at it again. Oh no.
   Region: 0
-  DrawWeight: 2000
+  DrawWeight: 10
   Repeatable: 1
   Condition:
     Days:
