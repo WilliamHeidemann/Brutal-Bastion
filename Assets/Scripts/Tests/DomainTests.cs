@@ -121,16 +121,16 @@ namespace Tests
         {
             PlayCoordinator playCoordinator = new();
             GameState gameState = GetGameState(playCoordinator);
-            IncentiveModifier pickupModifier = new IncentiveModifier
+            IncentiveModifier rewardModifier = new IncentiveModifier
             {
                 ToAffect = new List<Region> { Region.Orchid },
                 Changes = new List<ValueChange>
                 {
                     new ValueChange
                     {
-                        Attribute = Domain.Modifiers.Attribute.Lives,
+                        Attribute = Attribute.Lives,
                         ChangeType = ChangeType.Value,
-                        TimeOfEffect = TimeOfEffect.OnPickUp,
+                        TimeOfEffect = TimeOfEffect.OnReward,
                         Value = -1
                     }
                 },
@@ -142,7 +142,7 @@ namespace Tests
                 DaysToComplete = 1,
                 Requirement = 1,
                 Region = Region.Orchid,
-                Reward = new () { new ModifierIncentive(pickupModifier) },
+                Reward = new () { new ModifierIncentive(rewardModifier) },
                 Penalty = new() { new CurrencyIncentive(0, Currency.Lives) }
             };
 
@@ -154,13 +154,13 @@ namespace Tests
             playCoordinator.PassDay();
 
             Assert.That(gameState.Modifiers.Count, Is.EqualTo(1));
-            Assert.That(gameState.Modifiers.Contains(pickupModifier), Is.True);
+            Assert.That(gameState.Modifiers.Contains(rewardModifier), Is.True);
             
             playCoordinator.SetQuestsForTheDay(new List<Quest> { modifierRewardQuest });
             playCoordinator.Accept(modifierRewardQuest);
             playCoordinator.PassDay();
             
-            Assert.That(gameState.Lives, Is.EqualTo(4));
+            Assert.That(gameState.Lives, Is.EqualTo(3));
         }
 
         private static GameState GetGameState(PlayCoordinator playCoordinator)

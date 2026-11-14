@@ -34,7 +34,6 @@ namespace Domain.Utility
         {
             string timing = change.TimeOfEffect switch
             {
-                TimeOfEffect.OnPickUp => "on pickup",
                 TimeOfEffect.OnReward => "on reward",
                 TimeOfEffect.OnPenalty => "on penalty",
                 _ => "at an event"
