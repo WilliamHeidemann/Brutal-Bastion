@@ -236,6 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuestManager
   _questList: {fileID: 11400000, guid: dae24dc184272e9418b3df55440895c3, type: 2}
   QuestIndicator: {fileID: 111048261809516274, guid: 8f9a5d11756ae7e0fb7f80af4b33ebe0, type: 3}
+  secondsBetweenIndicators: 0.2
   questsToDraw: 3
   canvas: {fileID: 0}
   spawners:
@@ -251,5 +252,26 @@ MonoBehaviour:
   - region: 3
     position: {fileID: 4484256434553730471}
     radius: 100
+  _spawners:
+  - key: 0
+    value:
+      region: 0
+      position: {fileID: 0}
+      radius: 0
+  - key: 1
+    value:
+      region: 0
+      position: {fileID: 0}
+      radius: 0
+  - key: 2
+    value:
+      region: 0
+      position: {fileID: 0}
+      radius: 0
+  - key: 3
+    value:
+      region: 0
+      position: {fileID: 0}
+      radius: 0
   minDistanceBetweenIndicators: 100
   _audioService: {fileID: 0}
