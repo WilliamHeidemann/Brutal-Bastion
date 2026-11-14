@@ -69,27 +69,10 @@ namespace Domain
         {
             foreach (Quest acceptedQuest in _offeredQuests.AcceptedQuests)
             {
-                List<ValueChange> pickUpChanges = _gameState.Modifiers
-                    .Where(m => m.ToAffect.Contains(acceptedQuest.Region))
-                    .SelectMany(m => m.Changes)
-                    .Where(vc => vc.TimeOfEffect == TimeOfEffect.OnPickUp)
-                    .ToList();
-
-                float lifeCostBonus = pickUpChanges
-                    .Where(vc => vc.Attribute == Attribute.Lives)
-                    .Sum(vc => Bonus(vc, acceptedQuest.Requirement));
-
-                _gameState.Lives = Mathf.Max(0, _gameState.Lives - (int)lifeCostBonus);
-
-                float armyCostBonus = pickUpChanges
-                    .Where(vc => vc.Attribute == Attribute.ArmySize)
-                    .Sum(vc => Bonus(vc, acceptedQuest.Requirement));
-
-                _gameState.ArmySize =
-                    Mathf.Max(0, _gameState.ArmySize - (int)armyCostBonus - acceptedQuest.Requirement);
-
+                _gameState.ArmySize = Mathf.Max(0, _gameState.ArmySize - acceptedQuest.Requirement);
                 _activeQuests.Add(acceptedQuest);
             }
+            
             OnQuestsChanged?.Invoke();
         }
 
