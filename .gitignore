@@ -143,21 +143,35 @@ crashlytics-build.properties
 
 # Ignore local FMOD editor logs and caches
 fmod_editor.log
+fmod.log
 .fmod/
 
-# Unity-specific FMOD integrations
-# (Ignore the giant editor cache file that recreates itself)
-/[Aa]ssets/Plugins/FMOD/Resources/FMODStudioCache.asset
+# Ignore the FMOD Editor Cache (covers both FMOD 2.01+ and legacy paths + .meta files)
+/[Aa]ssets/[Pp]lugins/FMOD/Cache/
+/[Aa]ssets/[Pp]lugins/FMOD/Cache.meta
+/[Aa]ssets/[Pp]lugins/FMOD/Resources/FMODStudioCache.asset
+/[Aa]ssets/[Pp]lugins/FMOD/Resources/FMODStudioCache.asset.meta
 
-# --- CRITICAL: NEVER IGNORE FMOD DLLs ---
-# Some generic engine .gitignores block all .dll/.so files. 
-# You must explicitly whitelist FMOD binaries so the game compiles.
-!/[Aa]ssets/Plugins/FMOD/**/*.dll
-!/[Aa]ssets/Plugins/FMOD/**/*.so
-!/[Aa]ssets/Plugins/FMOD/**/*.bundle
-!/[Aa]ssets/Plugins/FMOD/**/*.dylib
-!/[Aa]ssets/Plugins/FMOD/**/*.a
+# Explicitly keep FMODStudioSettings tracked across Mac and PC
+!/[Aa]ssets/[Pp]lugins/FMOD/Resources/FMODStudioSettings.asset
+!/[Aa]ssets/[Pp]lugins/FMOD/Resources/FMODStudioSettings.asset.meta
+!/[Aa]ssets/[Pp]lugins/FMOD/Cache/Editor/FMODStudioSettings.asset
+!/[Aa]ssets/[Pp]lugins/FMOD/Cache/Editor/FMODStudioSettings.asset.meta
 
-# IDE file
-.idea/*
-.vscode/*
+# Ignore auto-copied banks inside StreamingAssets (keep only your source Single Build banks tracked)
+/[Aa]ssets/[Ss]treamingAssets/*.bank
+/[Aa]ssets/[Ss]treamingAssets/*.bank.meta
+/[Aa]ssets/[Ss]treamingAssets/*.bytes
+/[Aa]ssets/[Ss]treamingAssets/*.bytes.meta
+
+# --- CRITICAL: NEVER IGNORE FMOD BINARIES ---
+!/[Aa]ssets/[Pp]lugins/FMOD/**/*.dll
+!/[Aa]ssets/[Pp]lugins/FMOD/**/*.so
+!/[Aa]ssets/[Pp]lugins/FMOD/**/*.bundle
+!/[Aa]ssets/[Pp]lugins/FMOD/**/*.dylib
+!/[Aa]ssets/[Pp]lugins/FMOD/**/*.a
+!/[Aa]ssets/[Pp]lugins/FMOD/**/*.lib
+
+# IDE files
+.idea/
+.vscode/

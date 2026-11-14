@@ -291,6 +291,27 @@ MonoBehaviour:
   - region: 3
     position: {fileID: 4484256434553730471}
     radius: 100
+  _spawners:
+  - key: 0
+    value:
+      region: 0
+      position: {fileID: 0}
+      radius: 0
+  - key: 1
+    value:
+      region: 0
+      position: {fileID: 0}
+      radius: 0
+  - key: 2
+    value:
+      region: 0
+      position: {fileID: 0}
+      radius: 0
+  - key: 3
+    value:
+      region: 0
+      position: {fileID: 0}
+      radius: 0
   minDistanceBetweenIndicators: 100
   _audioService: {fileID: 0}
 --- !u!114 &70635170379903518
