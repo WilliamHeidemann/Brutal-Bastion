@@ -1,7 +1,7 @@
 using FMODUnity;
 using UnityEngine;
 
-namespace Game.Presentation.Audio
+namespace Presentation.Audio
 {
     public enum UISound
     {
