@@ -10,26 +10,25 @@ public class GameStarter : MonoBehaviour
     [SerializeField] private float waitBeforeStart = 2.0f;
     public UnityEvent OnGameStart;
     public UnityEvent OnGameStartAfterDelay;
-    
+
     private void Start()
     {
-      if (_audioService != null)
+        if (_audioService != null)
         {
-        _audioService.Play(UISound.Ambient);
+            _audioService.Play(UISound.Ambient);
         }
         else
         {
-        Debug.LogError("FmodAudioService reference is missing on GameStarter!");
+            Debug.LogError("FmodAudioService reference is missing on GameStarter!");
         }
-  
     }
 
     public void StartGame()
-    {   
+    {
         OnGameStart.Invoke();
         {
-        _audioService.Play(UISound.ThemeMusic);
-        _audioService.Stop(UISound.Ambient);
+            _audioService.Play(UISound.ThemeMusic);
+            _audioService.Stop(UISound.Ambient);
         }
         StartCoroutine(StartRoutine());
     }
