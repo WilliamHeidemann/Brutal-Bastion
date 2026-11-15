@@ -66,6 +66,7 @@ namespace Domain
             TickModifiers();
             OnQuestsChanged?.Invoke();
             _offeredQuests.Clear();
+            _gameState.Day++;
             OnNewDay?.Invoke();
         }
 
@@ -226,5 +227,6 @@ namespace Domain
         }
         
         public IEnumerable<IncentiveModifier> GetActiveModifiers() => _gameState.Modifiers;
+        public int GetDayNumber() => _gameState.Day;
     }
 }
