@@ -158,11 +158,15 @@ fmod.log
 !/[Aa]ssets/[Pp]lugins/FMOD/Cache/Editor/FMODStudioSettings.asset
 !/[Aa]ssets/[Pp]lugins/FMOD/Cache/Editor/FMODStudioSettings.asset.meta
 
-# Ignore auto-copied banks inside StreamingAssets (keep only your source Single Build banks tracked)
+# Ignore auto-copied banks in the root of StreamingAssets
 /[Aa]ssets/[Ss]treamingAssets/*.bank
 /[Aa]ssets/[Ss]treamingAssets/*.bank.meta
 /[Aa]ssets/[Ss]treamingAssets/*.bytes
 /[Aa]ssets/[Ss]treamingAssets/*.bytes.meta
+
+# Explicitly keep your source Single Build banks tracked
+!/[Aa]ssets/[Ss]treamingAssets/AudioBanks/
+!/[Aa]ssets/[Ss]treamingAssets/AudioBanks/**
 
 # --- CRITICAL: NEVER IGNORE FMOD BINARIES ---
 !/[Aa]ssets/[Pp]lugins/FMOD/**/*.dll
