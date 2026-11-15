@@ -19,19 +19,6 @@ namespace Presentation
         private Quest _quest;
         private bool _accepted;
 
-        public void Accept()
-        {
-            if (_accepted)
-                return;
-            if (_quest.Requirement > PlayManager.Instance.AvailableSoldiers)
-                return;
-            _accepted = true;
-            PlayManager.Instance.PlayCoordinator.Accept(_quest);
-            acceptImage.sprite = acceptSprite;
-            declineImage.sprite = declineSprite;
-        }
-
-
         public void SetQuest(Quest quest)
         {
             _quest = quest;
@@ -48,6 +35,8 @@ namespace Presentation
         public void Accept()
         {
             if (_accepted) return;
+            if (_quest.Requirement > PlayManager.Instance.AvailableSoldiers)
+                return;
 
             _accepted = true;
             PlayManager.Instance.PlayCoordinator.Accept(_quest);

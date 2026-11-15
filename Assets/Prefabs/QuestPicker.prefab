@@ -1548,14 +1548,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb539eddcfff4054283478c8e54fce80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestPicker
-  title: {fileID: 5556009249924327224}
-  region: {fileID: 5457895410440418814}
-  reward: {fileID: 1742398734255520545}
-  penalty: {fileID: 2063390777279511393}
-  acceptSprite: {fileID: 21300000, guid: 5b6407461027ff745baf4de572d7abc1, type: 3}
-  declineSprite: {fileID: 21300000, guid: c6e25b3172843a742bb1b01c4ade84a7, type: 3}
-  acceptImage: {fileID: 4275019826447069182}
-  declineImage: {fileID: 1947337900257405926}
+  _title: {fileID: 5556009249924327224}
+  _region: {fileID: 5457895410440418814}
+  _reward: {fileID: 1742398734255520545}
+  _penalty: {fileID: 2063390777279511393}
+  _acceptSprite: {fileID: 21300000, guid: 5b6407461027ff745baf4de572d7abc1, type: 3}
+  _declineSprite: {fileID: 21300000, guid: c6e25b3172843a742bb1b01c4ade84a7, type: 3}
+  _acceptImage: {fileID: 4275019826447069182}
+  _declineImage: {fileID: 1947337900257405926}
 --- !u!114 &2549350985505742483
 MonoBehaviour:
   m_ObjectHideFlags: 0
