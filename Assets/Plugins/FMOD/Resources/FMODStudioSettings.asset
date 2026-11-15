@@ -624,7 +624,10 @@ MonoBehaviour:
   Plugins: []
   MasterBanks:
   - Master
+  - Desktop/Master
   Banks:
+  - Desktop/Music
+  - Desktop/Sfx
   - Music
   - Sfx
   BanksToLoad: []

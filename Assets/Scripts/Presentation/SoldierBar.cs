@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Presentation;
+using Presentation.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,12 +40,17 @@ public class SoldierBar : MonoBehaviour
     }
 
     private IEnumerator Drain(int amount, Vector2 pos)
-    {
+    {   
+        if (amount == 0) yield break; // Prevent playing audio if nothing changed
+
         int mult = amount > 0 ? 1 : -1;
         amount *= mult;
         float time = 0.0f;
         const float waitTime = 1f / 60f;
         int soldiersAccountedFor = 0;
+
+        // Start the FMOD looping event when the bar starts draining or increasing
+        FmodAudioService.Instance?.Play(Sound.DeploySoldiers);
         
         while (time < timeToDrain)
         {
@@ -68,9 +74,13 @@ public class SoldierBar : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
         }
         
+        // Stop the audio once the loop finishes (allowFadeOut: true uses FMOD's AHDSR release)
+        FmodAudioService.Instance?.Stop(Sound.DeploySoldiers, allowFadeOut: true);
+
         if (soldiersAccountedFor != amount)
         {
-            displaySoldiers += amount - soldiersAccountedFor;
+            // Note: multiplied by 'mult' so negative drains finish accurately
+            displaySoldiers += mult * (amount - soldiersAccountedFor); 
             UpdateDisplays();
         } 
     }
