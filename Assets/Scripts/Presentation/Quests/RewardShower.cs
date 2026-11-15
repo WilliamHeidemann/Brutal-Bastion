@@ -11,7 +11,7 @@ public class RewardShower : MonoBehaviour
     public void SetQuest(Quest quest)
     {
         _quest = quest;
-        cost.text = $"Assign {quest.Requirement.ToString()} warriors";
+        cost.text = $"Assign {quest.Requirement.ToString()} warriors. In {quest.DaysToComplete} night:";
         reward.text = quest.Reward.GetDescription();
     }
 }
