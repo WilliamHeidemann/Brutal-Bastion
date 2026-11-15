@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191e3d39d6bd15a2bacbfe017bef0976, type: 3}
   m_Name: Forsaken
   m_EditorClassIdentifier: Assembly-CSharp::QuestObject
-  Title: Will of the Forsaken One
+  Title: Will of the Forsaken
   Description: 
   Region: 0
   DrawWeight: 10
@@ -54,7 +54,7 @@ MonoBehaviour:
       duration:
         Min: 2
         Max: 4
-        steps: 0
+        steps: 1
       regions: 00000000i
       regionAmount:
         Min: 1
