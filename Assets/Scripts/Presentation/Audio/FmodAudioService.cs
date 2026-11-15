@@ -9,12 +9,25 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
 namespace Presentation.Audio
 {
     public class FmodAudioService : MonoBehaviour, IAudioService
-    {
+    {   
+        public static IAudioService Instance { get; private set; }
+
         [SerializeField] private AudioContainer _audioContainer;
         [SerializeField] private UIAudioConfig _uiAudioConfig;
 
         // Tracks active instances by their EventReference GUID so they can be stopped
         private readonly Dictionary<FMOD.GUID, List<EventInstance>> _activeInstances = new();
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != (IAudioService)this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+        }
 
         public void Play(Sound sound)
         {
@@ -146,6 +159,11 @@ namespace Presentation.Audio
 
         private void OnDestroy()
         {
+            if (Instance == (IAudioService)this)
+            {
+                Instance = null;
+            }
+
             StopAll(allowFadeOut: false);
         }
     }

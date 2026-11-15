@@ -1,50 +1,61 @@
 using Domain;
 using Domain.Quests;
-using Presentation;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestPicker : MonoBehaviour
+namespace Presentation
 {
-    [SerializeField] private TMPro.TextMeshProUGUI title;
-    [SerializeField] private TMPro.TextMeshProUGUI region;
-    [SerializeField] private RewardShower reward;
-    [SerializeField] private PenaltyShower penalty;
-    [SerializeField] private Sprite acceptSprite;
-    [SerializeField] private Sprite declineSprite;
-    [SerializeField] private Image acceptImage;
-    [SerializeField] private Image declineImage;
-    
-    private Quest _quest;
-    private bool _accepted;
-
-    public void SetQuest(Quest quest)
+    public class QuestPicker : MonoBehaviour
     {
-        _quest = quest;
-        title.text = quest.Title;
-        region.text = quest.Region.Format();
-        reward.SetQuest(quest);
-        penalty.SetQuest(quest);
-        Decline();
-    }
+        [SerializeField] private TextMeshProUGUI _title;
+        [SerializeField] private TextMeshProUGUI _region;
+        [SerializeField] private RewardShower _reward;
+        [SerializeField] private PenaltyShower _penalty;
+        [SerializeField] private Sprite _acceptSprite;
+        [SerializeField] private Sprite _declineSprite;
+        [SerializeField] private Image _acceptImage;
+        [SerializeField] private Image _declineImage;
 
-    public void Accept()
-    {
-        if (_accepted)
-            return;
-        _accepted = true;
-        PlayManager.Instance.PlayCoordinator.Accept(_quest);
-        acceptImage.sprite = acceptSprite;
-        declineImage.sprite = declineSprite;
-    }
+        private Quest _quest;
+        private bool _accepted;
 
-    public void Decline()
-    {
-        if (!_accepted)
-            return;
-        _accepted = false;
-        PlayManager.Instance.PlayCoordinator.Decline(_quest);
-        acceptImage.sprite = declineSprite;
-        declineImage.sprite = acceptSprite;
+
+        public void SetQuest(Quest quest)
+        {
+            _quest = quest;
+            _title.text = quest.Title;
+            _region.text = quest.Region.Format();
+            _reward.SetQuest(quest);
+            _penalty.SetQuest(quest);
+
+            _accepted = false;
+            UpdateVisuals();
+            PlayManager.Instance.PlayCoordinator.Decline(_quest);
+        }
+
+        public void Accept()
+        {
+            if (_accepted) return;
+
+            _accepted = true;
+            PlayManager.Instance.PlayCoordinator.Accept(_quest);
+            UpdateVisuals();
+        }
+
+        public void Decline()
+        {
+            if (!_accepted) return;
+
+            _accepted = false;
+            PlayManager.Instance.PlayCoordinator.Decline(_quest);
+            UpdateVisuals();
+        }
+
+        private void UpdateVisuals()
+        {
+            _acceptImage.sprite = _accepted ? _acceptSprite : _declineSprite;
+            _declineImage.sprite = _accepted ? _declineSprite : _acceptSprite;
+        }
     }
 }

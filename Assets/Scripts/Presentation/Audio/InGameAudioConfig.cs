@@ -6,21 +6,24 @@ namespace Presentation.Audio
 {
     public enum Sound
     {
-        StartButton,
-        DrawQuest
+        ClickOnQuest,
+        ClickOffQuest,
+        DeploySoldiers,
     }
 
     [CreateAssetMenu(fileName = "Audio Container", menuName = "Audio/Audio Container")]
     public class AudioContainer : ScriptableObject
     {
-        [SerializeField] private EventReference _startButton;
-        [SerializeField] private EventReference _drawQuest;
-
+        [SerializeField] private EventReference _clickOnQuest;
+        [SerializeField] private EventReference _clickOffQuest;
+        [SerializeField] private EventReference _deploySoldiers;
 
         public EventReference Get(Sound sound) => sound switch
         {   
-            Sound.StartButton => _startButton,
-            Sound.DrawQuest => _drawQuest,
+            Sound.ClickOnQuest => _clickOnQuest,
+            Sound.ClickOffQuest => _clickOffQuest,
+            Sound.DeploySoldiers => _deploySoldiers,
+
             _ => throw new ArgumentOutOfRangeException(nameof(sound), sound, null)
         };
     }
