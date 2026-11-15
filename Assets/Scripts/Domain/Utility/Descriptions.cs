@@ -42,8 +42,18 @@ namespace Domain.Utility
 
             string attribute = change.Attribute switch
             {
-                Attribute.Lives => "lives",
-                Attribute.ArmySize => "army size",
+                Attribute.Lives => change.ChangeType switch
+                {
+                    ChangeType.Value => FormatLives(change.Value),
+                    ChangeType.Percentage => FormatLives(change.Value, true),
+                    _ => FormatLives(change.Value),
+                },
+                Attribute.ArmySize => change.ChangeType switch
+                {
+                    ChangeType.Value => FormatSoldiers(change.Value),
+                    ChangeType.Percentage => FormatSoldiers(change.Value, true),
+                    _ => FormatSoldiers(change.Value),
+                },
                 Attribute.TurnRequirement => "turn requirement",
                 _ => "value"
             };
@@ -56,7 +66,7 @@ namespace Domain.Utility
                 _ => "0"
             };
 
-            return $"{timing}: {attribute} {amount}";
+            return $"{timing}: {attribute}";
         }
 
         private static string FormatDuration(Duration duration)
@@ -64,7 +74,7 @@ namespace Domain.Utility
             return duration switch
             {
                 LimitedDuration limited =>
-                    $"Lasts {limited.TurnsLeft} turn{(limited.TurnsLeft == 1 ? string.Empty : "s")}.",
+                    $"Lasts {FormatDays(limited.TurnsLeft)}",
                 InfiniteDuration => "Lasts indefinitely.",
                 _ => "Lasts for an unknown duration."
             };
@@ -80,23 +90,25 @@ namespace Domain.Utility
             return $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{text}</color>";
         }
 
-        public static string FormatSoldiers(int amount)
+        public static string FormatSoldiers(int amount, bool percent = false)
         {
+            var perc = percent ? "%" : string.Empty;
             return FormatColor(
                 Color.blue,
-                $"{amount} \ue803"
+                $"{amount}{perc} \ue803"
             );
         }
 
-        public static string FormatLives(int amount)
+        public static string FormatLives(int amount, bool percent = false)
         {
+            var perc = percent ? "%" : string.Empty;
             string s = "";
-            if (amount == 1)
+            if (amount == 1 && !percent)
                 s = "\ue806";
-            else if (amount == -1)
+            else if (amount == -1  && !percent)
                 s = "-\ue806";
             else 
-                s = $"{amount} \ue806";
+                s = $"{amount}{perc} \ue806";
 
             return FormatColor(
                 Color.darkRed,
