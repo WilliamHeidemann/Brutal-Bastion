@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Presentation.Audio;
+using FMODUnity; // Added for RuntimeManager check
 
 public class GameStarter : MonoBehaviour
 {
@@ -12,18 +13,26 @@ public class GameStarter : MonoBehaviour
     public UnityEvent OnGameStart;
     public UnityEvent OnGameStartAfterDelay;
 
-    private void Start()
+    private IEnumerator Start()
     {
-        if (_audioService != null)
-        {
-            _audioService.Play(UISound.Ambient);
-        }
-        else
+        if (_audioService == null)
         {
             Debug.LogError("FmodAudioService reference is missing on GameStarter!");
+            yield break;
         }
-    }
 
+        // 1. Wait for banks to finish loading
+        while (!RuntimeManager.HasBankLoaded("Master") || !RuntimeManager.HaveAllBanksLoaded)
+        {
+            yield return null;
+        }
+
+        // 2. Force FMOD Studio to finish building internal bus/event models
+        RuntimeManager.StudioSystem.flushCommands();
+
+        _audioService.Play(UISound.Ambient);
+    }
+    
     public void StartGame()
     {
         OnGameStart.Invoke();
