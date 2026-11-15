@@ -10,8 +10,13 @@ public class NextDay : MonoBehaviour
     
     public void EndDay()
     {
-        _audioService.Play(Sound.EndOfDay);
-        OnDayEnd.Invoke();
         PlayManager.Instance.PlayCoordinator.PassDay();
+        OnDayEnd.Invoke();
+
+        // Replace with your PlayCoordinator's lives/game-over check (e.g., GetLives() > 0 or !IsGameOver)
+        if (PlayManager.Instance.PlayCoordinator.GetLives() > 0)
+        {
+            _audioService.Play(Sound.EndOfDay);
+        }
     }
 }
