@@ -44,13 +44,13 @@ public class ModifierManager : MonoBehaviour
             .OrderBy(q => q.Key.ToAffect[0])
             .Select(q => q.Value)
             .ToList();
-        
+        /*
         for (int i = 0;  i < orderedIndicators.Count; i++)
         {
             var dest = i * spaceBetweenModifiers;
             orderedIndicators[i]
                 .GetComponent<MoveTo2D>()
                 .SetTarget(modifierPresenterParent.position + new Vector3(dest.x, dest.y, 0));
-        }
+        }*/
     }
 }
