@@ -22,10 +22,14 @@ MonoBehaviour:
       Min: -1
       Max: -1
       steps: 1
+    Lives:
+      Min: -1
+      Max: -1
+      steps: 1
     Flags: []
   Cost:
-    Min: 100
-    Max: 300
+    Min: 50
+    Max: 150
     steps: 50
   DaysToComplete:
     Min: 1
@@ -34,12 +38,13 @@ MonoBehaviour:
   Success:
     Soldiers:
       Min: 50
-      Max: 300
+      Max: 150
       steps: 25
     Lives:
       Min: 0
-      Max: 3
+      Max: 0
       steps: 1
+    Arcanas: []
     FlagstoAdd: []
     FlagstoRemove: []
   Failure:
@@ -51,5 +56,6 @@ MonoBehaviour:
       Min: 0
       Max: 3
       steps: 1
+    Arcanas: []
     FlagstoAdd: []
     FlagstoRemove: []
