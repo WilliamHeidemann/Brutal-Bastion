@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: UIAudioConfig
   m_EditorClassIdentifier: Assembly-CSharp::Game.Presentation.Audio.UIAudioConfig
   <_ambient>k__BackingField:
-    Guid: 6d431ea6de315a748a2f98a0122a7979
+    Guid: 00000000000000000000000000000000
   <_themeMusic>k__BackingField:
     Guid: 2d2d78ce8eb5f594ba49799acdefea69
   <_onClickDrum>k__BackingField:
     Guid: 81575bb74150e6a4d8cfa835ae4d1f7b
+  <_failure>k__BackingField:
+    Guid: 7e01deca34d171a498f0c3eea8e8f07b
+  <_click>k__BackingField:
+    Guid: 279dac7289e849b4ba5a015973db2ccf
