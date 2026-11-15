@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191e3d39d6bd15a2bacbfe017bef0976, type: 3}
   m_Name: Penguins
   m_EditorClassIdentifier: Assembly-CSharp:Domain.Quests:QuestObject
-  Title: Penguins!
+  Title: Penguin Uprising!
   Description: They're at it again. Oh no.
-  Region: 0
+  Region: 3
   DrawWeight: 10
   Repeatable: 1
   Condition:
@@ -28,9 +28,9 @@ MonoBehaviour:
       steps: 1
     Flags: []
   Cost:
-    Min: 100
+    Min: 75
     Max: 300
-    steps: 50
+    steps: 25
   DaysToComplete:
     Min: 1
     Max: 3
@@ -42,7 +42,7 @@ MonoBehaviour:
       steps: 25
     Lives:
       Min: 0
-      Max: 3
+      Max: 1
       steps: 1
     Arcanas: []
     FlagstoAdd: []
