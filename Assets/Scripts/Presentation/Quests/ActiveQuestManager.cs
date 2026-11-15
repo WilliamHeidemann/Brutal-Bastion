@@ -33,7 +33,7 @@ public class ActiveQuestManager : MonoBehaviour
             if (newQuests.Contains(quest) && !activeQuests.ContainsKey(quest))
             {
                 activeQuests[quest] = Instantiate(questIndicatorPrefab, questIndicatorParent);
-                activeQuests[quest].GetComponent<QuestIndicator>().Quest = quest;
+                activeQuests[quest].GetComponent<QuestSummary>().SetQuest(quest);
             }
         }
         
