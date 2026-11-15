@@ -1,3 +1,4 @@
+using Domain.Utility;
 using Presentation;
 using UnityEngine;
 
@@ -13,6 +14,12 @@ public class LifeDisplay : MonoBehaviour
 
     private void UpdateLives()
     {
-        text.text = $"{PlayManager.Instance.PlayCoordinator.GetLives()} hearts";
+        string heart = Descriptions.FormatLives(1);
+        text.text = "";
+        for (int i = 0; i < PlayManager.Instance.PlayCoordinator.GetLives(); i++)
+            text.text += " " + heart;
+        
+        if (PlayManager.Instance.PlayCoordinator.GetLives() > 8)
+            text.text = Descriptions.FormatLives(PlayManager.Instance.PlayCoordinator.GetLives());
     }
 }

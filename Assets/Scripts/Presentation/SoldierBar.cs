@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Domain.Utility;
 using Presentation;
 using Presentation.Audio;
 using UnityEngine;
@@ -93,7 +94,7 @@ public class SoldierBar : MonoBehaviour
 
     private void UpdateDisplays()
     {
-        text.text = $"{displaySoldiers}/{maxSoldiers}";
+        text.text = $"{Descriptions.FormatSoldiers(displaySoldiers)}/{Descriptions.FormatSoldiers(maxSoldiers)}";
         slider.maxValue = maxSoldiers;
         slider.value = displaySoldiers;
     }
