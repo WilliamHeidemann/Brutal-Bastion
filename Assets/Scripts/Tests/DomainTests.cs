@@ -117,6 +117,45 @@ namespace Tests
         }
 
         [Test]
+        public void DecliningQuestWithMinusOneHundredPercentArmyModifierLosesAllArmy()
+        {
+            PlayCoordinator playCoordinator = new();
+            GameState gameState = GetGameState(playCoordinator);
+            gameState.Modifiers.Add(new IncentiveModifier
+            {
+                ToAffect = new List<Region> { Region.Orchid },
+                Changes = new List<ValueChange>
+                {
+                    new ValueChange
+                    {
+                        Attribute = Attribute.ArmySize,
+                        ChangeType = ChangeType.Percentage,
+                        TimeOfEffect = TimeOfEffect.OnPenalty,
+                        Value = -100
+                    }
+                },
+                Duration = new InfiniteDuration()
+            });
+
+            Quest declinedQuest = new Quest
+            {
+                DaysToComplete = 1,
+                Requirement = 1,
+                Region = Region.Orchid,
+                Reward = new() { new CurrencyIncentive(0, Currency.Lives) },
+                Penalty = new() { new CurrencyIncentive(-100, Currency.ArmySize) }
+            };
+
+            Assert.That(gameState.ArmySize, Is.EqualTo(1000));
+
+            playCoordinator.SetQuestsForTheDay(new List<Quest> { declinedQuest });
+            playCoordinator.Decline(declinedQuest);
+            playCoordinator.PassDay();
+
+            Assert.That(gameState.ArmySize, Is.Zero);
+        }
+
+        [Test]
         public void ModifierIncentiveRewardIsAddedToGameStateAfterOneDay()
         {
             PlayCoordinator playCoordinator = new();
