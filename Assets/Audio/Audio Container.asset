@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Audio Container
   m_EditorClassIdentifier: Assembly-CSharp::Game.Presentation.Audio.AudioContainer
   _clickOnQuest:
-    Guid: 00000000000000000000000000000000
+    Guid: 279dac7289e849b4ba5a015973db2ccf
+    Path: event:/SFX/ClickOnQuest
   _clickOffQuest:
-    Guid: 00000000000000000000000000000000
+    Guid: c83a086af44a75548aeea58837903e05
+    Path: event:/SFX/ClickOffQuest
   _deploySoldiers:
     Guid: 88323f9731547df4683f40e8087524a1
+    Path: event:/SFX/DeploySoldiers
   _endOfDay:
     Guid: 678b058adb017ca47b08a54f0c55393b
+    Path: event:/SFX/EndOfDay

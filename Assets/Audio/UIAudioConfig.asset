@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Presentation.Audio.UIAudioConfig
   <_ambient>k__BackingField:
     Guid: 6d431ea6de315a748a2f98a0122a7979
+    Path: event:/Background/Ambient
   <_themeMusic>k__BackingField:
     Guid: 2d2d78ce8eb5f594ba49799acdefea69
+    Path: event:/Background/ThemeMusic
   <_onClickDrum>k__BackingField:
     Guid: 81575bb74150e6a4d8cfa835ae4d1f7b
+    Path: event:/SFX/OnClickDrum
   <_failure>k__BackingField:
     Guid: 7e01deca34d171a498f0c3eea8e8f07b
+    Path: event:/Failure
   <_click>k__BackingField:
     Guid: c83a086af44a75548aeea58837903e05
+    Path: event:/SFX/ClickOffQuest
