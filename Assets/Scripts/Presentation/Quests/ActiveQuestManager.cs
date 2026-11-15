@@ -28,17 +28,18 @@ public class ActiveQuestManager : MonoBehaviour
             {
                 activeQuests[quest].GetComponent<FlipSprite>().FlipDestroy();
                 activeQuests.Remove(quest);
+                continue;
             }
 
             if (newQuests.Contains(quest) && !activeQuests.ContainsKey(quest))
             {
                 activeQuests[quest] = Instantiate(questIndicatorPrefab, questIndicatorParent);
-                activeQuests[quest].GetComponent<QuestSummary>().SetQuest(quest);
             }
+            activeQuests[quest].GetComponent<QuestSummary>().SetQuest(quest);
         }
         
         var orderedIndicators = activeQuests
-            .OrderBy(q => q.Key.DaysToComplete)
+            .OrderBy(q => PlayManager.Instance.PlayCoordinator.GetDaysLeftOnQuest(q.Key))
             .Select(q => q.Value)
             .ToList();
 
