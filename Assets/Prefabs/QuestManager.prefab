@@ -291,27 +291,6 @@ MonoBehaviour:
   - region: 3
     position: {fileID: 4484256434553730471}
     radius: 100
-  _spawners:
-  - key: 0
-    value:
-      region: 0
-      position: {fileID: 0}
-      radius: 0
-  - key: 1
-    value:
-      region: 0
-      position: {fileID: 0}
-      radius: 0
-  - key: 2
-    value:
-      region: 0
-      position: {fileID: 0}
-      radius: 0
-  - key: 3
-    value:
-      region: 0
-      position: {fileID: 0}
-      radius: 0
   minDistanceBetweenIndicators: 100
   _audioService: {fileID: 0}
 --- !u!114 &70635170379903518
@@ -327,5 +306,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestPickerManager
   questPickerPrefab: {fileID: 8582811960714891087, guid: e617bc45bdf82fe45a98859d9984e32c, type: 3}
-  spaceBetweenQuests: {x: 200, y: 0}
+  spaceBetweenQuests: {x: 440, y: 0}
   questPickerParent: {fileID: 4986676167664391543}
