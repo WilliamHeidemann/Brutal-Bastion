@@ -66,10 +66,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3 hearts
+  m_text: '\ue806 \ue806 \ue806
+
+'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40a9ed5c3a3a5d8448a85917f1bb69d9, type: 2}
-  m_sharedMaterial: {fileID: -5383520179746041342, guid: 40a9ed5c3a3a5d8448a85917f1bb69d9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6f5ebcbe5ffbbc842ab042066ebae9ea, type: 2}
+  m_sharedMaterial: {fileID: -1567855829574874353, guid: 6f5ebcbe5ffbbc842ab042066ebae9ea, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -93,8 +95,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
