@@ -1,5 +1,6 @@
 using Domain;
 using Domain.Quests;
+using Domain.Utility;
 using TMPro;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ public class QuestSummary : MonoBehaviour
         _quest = quest;
         title.text = quest.Title;
         region.text = quest.Region.Format();
-        reward.text = quest.Reward.GetDescription();
-        time.text = $"{quest.DaysToComplete.ToString()} nights";
+        reward.text = quest.Reward.GetShortDescription();
+        time.text = $"{Descriptions.FormatDays(quest.DaysToComplete)}";
     }
 }

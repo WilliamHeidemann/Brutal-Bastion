@@ -19,5 +19,6 @@ namespace Domain.Incentives
         public override void Modify(GameState gameState) => gameState.Modifiers.Add(Modifier);
 
         public override string GetDescription() => Descriptions.Get(Modifier);
+        public override string GetShortDescription() => Descriptions.ModifierIcon();
     }
 }

@@ -74,6 +74,11 @@ public static class QuestExtensions
         return string.Join("\n", incentives.Select(i => i.GetDescription()));
     }
 
+    public static string GetShortDescription(this IEnumerable<Incentive> incentives)
+    {
+        return string.Join(", ", incentives.Select(i => i.GetShortDescription()));
+    }
+
     public static int WeightSum(this IEnumerable<QuestObject> quests)
     {
         return quests.Sum(q => q.DrawWeight);

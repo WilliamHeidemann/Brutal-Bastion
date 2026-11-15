@@ -36,6 +36,13 @@ namespace Domain.Incentives
             Currency.ArmySize => Amount > 0 ? $"Gain {Descriptions.FormatSoldiers(Amount)}" : $"Lose {Descriptions.FormatSoldiers(Mathf.Abs(Amount))}",
             _ => string.Empty
         };
+
+        public override string GetShortDescription() => Currency switch
+        {
+            Currency.Lives => Descriptions.FormatLives(Amount),
+            Currency.ArmySize => Descriptions.FormatSoldiers(Amount),
+            _ => string.Empty
+        };
     }
 
     public enum Currency

@@ -4,5 +4,6 @@ namespace Domain.Incentives
     {
         public abstract void Modify(GameState gameState);
         public abstract string GetDescription();
+        public abstract string GetShortDescription();
     }
 }

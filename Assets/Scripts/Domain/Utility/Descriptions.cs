@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Domain.Modifiers;
+using UnityEngine;
 
 namespace Domain.Utility
 {
@@ -74,23 +75,49 @@ namespace Domain.Utility
             return value > 0 ? $"+{value:0.#}" : $"{value:0.#}";
         }
 
+        private static string FormatColor(Color color, string text)
+        {
+            return $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{text}</color>";
+        }
+
         public static string FormatSoldiers(int amount)
         {
-            return $"{amount} \ue803";
+            return FormatColor(
+                Color.blue,
+                $"{amount} \ue803"
+            );
         }
 
         public static string FormatLives(int amount)
         {
+            string s = "";
             if (amount == 1)
-                return "\ue806";
-            if (amount == -1)
-                return "-\ue806";
-            return $"{amount} \ue806";
+                s = "\ue806";
+            else if (amount == -1)
+                s = "-\ue806";
+            else 
+                s = $"{amount} \ue806";
+
+            return FormatColor(
+                Color.darkRed,
+                s
+            );
         }
 
         public static string FormatDays(int amount)
         {
-            return $"{amount} \ue800";
+            return FormatColor(
+                Color.blueViolet,
+                $"{amount} \ue800"
+            );
+        }
+
+        public static string ModifierIcon()
+        {
+            return FormatColor(
+                Color.chartreuse,
+                "\ueF0D0"
+            );
         }
     }
 }
