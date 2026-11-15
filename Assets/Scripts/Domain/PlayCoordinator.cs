@@ -228,5 +228,7 @@ namespace Domain
         
         public IEnumerable<IncentiveModifier> GetActiveModifiers() => _gameState.Modifiers;
         public int GetDayNumber() => _gameState.Day;
+
+        public int GetDaysLeftOnQuest(Quest quest) => _activeQuests.DaysLeftOnQuest(quest);
     }
 }

@@ -39,5 +39,12 @@ namespace Domain.Quests
         {
             return _activeQuests.Keys.ToList();
         }
+
+        public int DaysLeftOnQuest(Quest quest)
+        {
+            if (_activeQuests.ContainsKey(quest))
+                return _activeQuests[quest];
+            return 0;
+        }
     }
 }
