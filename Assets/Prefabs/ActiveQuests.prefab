@@ -71,7 +71,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -50}
+  m_AnchoredPosition: {x: 32, y: -150}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3684338572414428966
@@ -87,5 +87,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActiveQuestManager
   questIndicatorPrefab: {fileID: 710314888578162382, guid: 871f9537e0160e7408f96a8a27e8e305, type: 3}
-  spaceBetweenQuests: {x: 0, y: -70}
+  spaceBetweenQuests: {x: 0, y: -120}
   questIndicatorParent: {fileID: 1774546129804935528}
