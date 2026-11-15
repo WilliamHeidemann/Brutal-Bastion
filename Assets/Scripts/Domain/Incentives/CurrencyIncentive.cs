@@ -1,4 +1,5 @@
 using System;
+using Domain.Utility;
 using UnityEngine;
 
 namespace Domain.Incentives
@@ -31,8 +32,8 @@ namespace Domain.Incentives
 
         public override string GetDescription() => Currency switch
         {
-            Currency.Lives => Amount > 0 ? $"Gain {Amount} life." : $"Lose {Mathf.Abs(Amount)} life.",
-            Currency.ArmySize => Amount > 0 ? $"Gain {Amount} army size." : $"Lose {Mathf.Abs(Amount)} army size.",
+            Currency.Lives => Amount > 0 ? $"Gain {Descriptions.FormatLives(Amount)}" : $"Lose {Descriptions.FormatLives(Mathf.Abs(Amount))}",
+            Currency.ArmySize => Amount > 0 ? $"Gain {Descriptions.FormatSoldiers(Amount)}" : $"Lose {Descriptions.FormatSoldiers(Mathf.Abs(Amount))}",
             _ => string.Empty
         };
     }

@@ -1,4 +1,5 @@
 using Domain.Quests;
+using Domain.Utility;
 using UnityEngine;
 
 public class RewardShower : MonoBehaviour
@@ -11,7 +12,7 @@ public class RewardShower : MonoBehaviour
     public void SetQuest(Quest quest)
     {
         _quest = quest;
-        cost.text = $"Assign {quest.Requirement.ToString()} warriors. In {quest.DaysToComplete} night:";
+        cost.text = $"Assign {Descriptions.FormatSoldiers(quest.Requirement)} warriors. In {Descriptions.FormatDays(quest.DaysToComplete)}";
         reward.text = quest.Reward.GetDescription();
     }
 }
