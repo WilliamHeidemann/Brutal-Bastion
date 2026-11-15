@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191e3d39d6bd15a2bacbfe017bef0976, type: 3}
   m_Name: Harpies
   m_EditorClassIdentifier: Assembly-CSharp:Domain.Quests:QuestObject
-  Title: Harpies
+  Title: Harpy Rampage
   Description: 
   Region: 0
   DrawWeight: 10
@@ -22,24 +22,29 @@ MonoBehaviour:
       Min: -1
       Max: -1
       steps: 1
+    Lives:
+      Min: -1
+      Max: -1
+      steps: 1
     Flags: []
   Cost:
     Min: 100
-    Max: 300
+    Max: 250
     steps: 50
   DaysToComplete:
-    Min: 1
+    Min: 2
     Max: 3
     steps: 1
   Success:
     Soldiers:
       Min: 50
-      Max: 300
+      Max: 200
       steps: 25
     Lives:
       Min: 0
-      Max: 3
+      Max: 1
       steps: 1
+    Arcanas: []
     FlagstoAdd: []
     FlagstoRemove: []
   Failure:
@@ -51,5 +56,6 @@ MonoBehaviour:
       Min: 0
       Max: 3
       steps: 1
+    Arcanas: []
     FlagstoAdd: []
     FlagstoRemove: []

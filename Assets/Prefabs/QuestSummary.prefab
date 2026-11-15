@@ -486,8 +486,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Penguin Invasion
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6f5ebcbe5ffbbc842ab042066ebae9ea, type: 2}
-  m_sharedMaterial: {fileID: -1567855829574874353, guid: 6f5ebcbe5ffbbc842ab042066ebae9ea, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 62b1a3e09a577ce48abb38ff59cf8877, type: 2}
+  m_sharedMaterial: {fileID: 8821414460611935248, guid: 62b1a3e09a577ce48abb38ff59cf8877, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
