@@ -12,7 +12,9 @@ public class RewardShower : MonoBehaviour
     public void SetQuest(Quest quest)
     {
         _quest = quest;
-        cost.text = $"Assign {Descriptions.FormatSoldiers(quest.Requirement)} warriors. In {Descriptions.FormatDays(quest.DaysToComplete)}";
+        cost.text = $"Assign {Descriptions.FormatSoldiers(quest.Requirement)} warriors";
+        if (quest.Reward.Count > 0)
+            cost.text += $"\nIn {Descriptions.FormatDays(quest.DaysToComplete)}";
         reward.text = quest.Reward.GetDescription();
     }
 }
