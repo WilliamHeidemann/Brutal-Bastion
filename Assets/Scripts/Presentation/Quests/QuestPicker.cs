@@ -32,6 +32,8 @@ public class QuestPicker : MonoBehaviour
     {
         if (_accepted)
             return;
+        if (_quest.Requirement > PlayManager.Instance.AvailableSoldiers)
+            return;
         _accepted = true;
         PlayManager.Instance.PlayCoordinator.Accept(_quest);
         acceptImage.sprite = acceptSprite;

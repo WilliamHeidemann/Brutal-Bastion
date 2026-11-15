@@ -35,17 +35,17 @@ namespace Domain
         public void Accept(Quest quest)
         {
             _offeredQuests.Accept(quest);
+            OnAcceptedQuestsChanged?.Invoke();
             if (quest.Requirement != 0)
                 OnArmySizeChange?.Invoke();
-            OnAcceptedQuestsChanged?.Invoke();
         }
 
         public void Decline(Quest quest)
         {
             _offeredQuests.Decline(quest);
+            OnAcceptedQuestsChanged?.Invoke();
             if (quest.Requirement != 0)
                 OnArmySizeChange?.Invoke();
-            OnAcceptedQuestsChanged?.Invoke();
         }
 
         public void PassDay()
