@@ -600,19 +600,19 @@ MonoBehaviour:
   HasSourceProject: 0
   HasPlatforms: 0
   sourceProjectPath: ../../../../ProjectCreatureAssembly/FMOD_Projects/Brutal-Bastion/Brutal-Bastion-FMOD/Brutal-Bastion-FMOD.fspro
-  sourceBankPath: Assets/StreamingAssets/AudioBanks/Desktop
+  sourceBankPath: Assets/StreamingAssets/Desktop
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 1
   BankLoadType: 0
-  AutomaticSampleLoading: 1
+  AutomaticSampleLoading: 0
   EncryptionKey: 
   ImportType: 0
   TargetAssetPath: FMODBanks
   TargetBankFolder: ' '
   EventLinkage: 0
-  SerializeGUIDsOnly: 0
+  SerializeGUIDsOnly: 1
   LoggingLevel: 2
   SpeakerModeSettings: []
   SampleRateSettings: []
@@ -624,12 +624,7 @@ MonoBehaviour:
   Plugins: []
   MasterBanks:
   - Master
-  - Desktop/Master
-  Banks:
-  - Desktop/Music
-  - Desktop/Sfx
-  - Music
-  - Sfx
+  Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
