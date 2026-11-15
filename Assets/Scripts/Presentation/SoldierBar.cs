@@ -17,8 +17,8 @@ public class SoldierBar : MonoBehaviour
 
     private int maxSoldiers = 1000;
     private int soldiers = 0;
-
     private int displaySoldiers = 0;
+    private bool isGameOver = false;
 
     private void Start()
     {
@@ -26,11 +26,33 @@ public class SoldierBar : MonoBehaviour
         displaySoldiers = soldiers;
         PlayManager.Instance.PlayCoordinator.OnArmySizeChange += UpdateSoldiers;
         PlayManager.Instance.PlayCoordinator.OnNewDay += NewDay;
+        PlayManager.Instance.PlayCoordinator.OnOutOfLives += HandleGameOver;
         UpdateDisplays();
+    }
+
+    private void OnDestroy()
+    {
+        if (PlayManager.Instance != null && PlayManager.Instance.PlayCoordinator != null)
+        {
+            PlayManager.Instance.PlayCoordinator.OnArmySizeChange -= UpdateSoldiers;
+            PlayManager.Instance.PlayCoordinator.OnNewDay -= NewDay;
+            PlayManager.Instance.PlayCoordinator.OnOutOfLives -= HandleGameOver;
+        }
+    }
+
+    private void HandleGameOver()
+    {
+        isGameOver = true;
+        StopAllCoroutines();
+        FmodAudioService.Instance?.Stop(Sound.DeploySoldiers, allowFadeOut: false);
     }
 
     private void UpdateSoldiers()
     {
+        // Don't animate or play DeploySoldiers audio once the lose screen is active
+        if (isGameOver || PlayManager.Instance.PlayCoordinator.GetLives() <= 0)
+            return;
+
         int newSoldiers = maxSoldiers - PlayManager.Instance.PlayCoordinator.GetCommitedSoldiers();
         int change = newSoldiers - soldiers;
         soldiers = newSoldiers;
@@ -55,6 +77,13 @@ public class SoldierBar : MonoBehaviour
         
         while (time < timeToDrain)
         {
+            // Abort immediately if the player loses mid-drain
+            if (isGameOver)
+            {
+                FmodAudioService.Instance?.Stop(Sound.DeploySoldiers, allowFadeOut: false);
+                yield break;
+            }
+
             time += waitTime;
 
             int soldiers = (int)(soldierDrain.Evaluate(time/timeToDrain) * amount);
@@ -88,6 +117,9 @@ public class SoldierBar : MonoBehaviour
 
     private void NewDay()
     {
+        if (isGameOver || PlayManager.Instance.PlayCoordinator.GetLives() <= 0)
+            return;
+
         maxSoldiers = PlayManager.Instance.PlayCoordinator.GetArmySize();
         UpdateSoldiers();
     }
