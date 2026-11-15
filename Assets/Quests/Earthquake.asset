@@ -15,7 +15,7 @@ MonoBehaviour:
   Title: Earthquake
   Description: 
   Region: 1
-  DrawWeight: 10
+  DrawWeight: 5
   Repeatable: 1
   Condition:
     Days:
@@ -57,7 +57,7 @@ MonoBehaviour:
       Max: 0
       steps: 1
     Arcanas:
-    - type: 1
+    - type: 0
       timeOfEffect: 1
       magnitude:
         Min: -100

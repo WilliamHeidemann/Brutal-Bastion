@@ -45,11 +45,11 @@ MonoBehaviour:
       Max: 1
       steps: 1
     Arcanas:
-    - type: 1
+    - type: 0
       timeOfEffect: 0
       magnitude:
         Min: 25
-        Max: 25
+        Max: 50
         steps: 1
       duration:
         Min: 2
@@ -70,7 +70,7 @@ MonoBehaviour:
     Lives:
       Min: 0
       Max: 0
-      steps: 0
+      steps: 1
     Arcanas: []
     FlagstoAdd: []
     FlagstoRemove: []
