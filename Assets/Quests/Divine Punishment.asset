@@ -45,16 +45,16 @@ MonoBehaviour:
       Max: 3
       steps: 1
     Arcanas:
-    - type: 3
+    - type: 2
       timeOfEffect: 0
       magnitude:
-        Min: 100
-        Max: 100
+        Min: 1
+        Max: 1
         steps: 1
       duration:
         Min: 2
         Max: 4
-        steps: 0
+        steps: 1
       regions: 0400000000000000i
       regionAmount:
         Min: 1
