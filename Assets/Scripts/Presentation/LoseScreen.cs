@@ -4,6 +4,7 @@ using UnityEngine;
 public class LoseScreen : MonoBehaviour
 {
     [SerializeField] private GameObject overlay;
+    [SerializeField] private TMPro.TextMeshProUGUI stats;
     
     void Start()
     {
@@ -13,5 +14,11 @@ public class LoseScreen : MonoBehaviour
     void ShowScreen()
     {
         overlay.SetActive(true);
+        UpdateStats();
+    }
+
+    private void UpdateStats()
+    {
+        stats.text = $"Days survived: {PlayManager.Instance.PlayCoordinator.GetDayNumber()}";
     }
 }

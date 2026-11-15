@@ -16,10 +16,8 @@ namespace Presentation
         [SerializeField] private Sprite _declineSprite;
         [SerializeField] private Image _acceptImage;
         [SerializeField] private Image _declineImage;
-
         private Quest _quest;
         private bool _accepted;
-
 
         public void SetQuest(Quest quest)
         {
@@ -37,6 +35,8 @@ namespace Presentation
         public void Accept()
         {
             if (_accepted) return;
+            if (_quest.Requirement > PlayManager.Instance.AvailableSoldiers)
+                return;
 
             _accepted = true;
             PlayManager.Instance.PlayCoordinator.Accept(_quest);

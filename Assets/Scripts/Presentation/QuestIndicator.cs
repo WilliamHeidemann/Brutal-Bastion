@@ -67,6 +67,7 @@ public class QuestIndicator : MonoBehaviour
         if (_accepted)
             return;
         
+        PlayManager.Instance.lastInteractedQuestPosition = GetComponent<RectTransform>().position;
         _accepted = true;
         GetComponent<FlipSprite>().Flip(AcceptSprite);
     }
@@ -76,6 +77,7 @@ public class QuestIndicator : MonoBehaviour
         if (!_accepted)
             return;
         
+        PlayManager.Instance.lastInteractedQuestPosition = GetComponent<RectTransform>().position;
         _accepted = false;
         GetComponent<FlipSprite>().Flip(DeclineSprite);
     }
