@@ -73,5 +73,24 @@ namespace Domain.Utility
         {
             return value > 0 ? $"+{value:0.#}" : $"{value:0.#}";
         }
+
+        public static string FormatSoldiers(int amount)
+        {
+            return $"{amount} \ue803";
+        }
+
+        public static string FormatLives(int amount)
+        {
+            if (amount == 1)
+                return "\ue806";
+            if (amount == -1)
+                return "-\ue806";
+            return $"{amount} \ue806";
+        }
+
+        public static string FormatDays(int amount)
+        {
+            return $"{amount} \ue800";
+        }
     }
 }

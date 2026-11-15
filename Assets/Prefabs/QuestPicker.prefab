@@ -142,7 +142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lose 50 warriors tonight
+  m_text: 'Lose 50 \ue803 tonight
 
 '
   m_isRightToLeft: 0
@@ -625,7 +625,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gain 50 warriors tonight
+  m_text: Gain \ue806
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6f5ebcbe5ffbbc842ab042066ebae9ea, type: 2}
   m_sharedMaterial: {fileID: -1567855829574874353, guid: 6f5ebcbe5ffbbc842ab042066ebae9ea, type: 2}
@@ -1231,7 +1231,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Assign 75 warriors
+  m_text: Assign 75 \ue803
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6f5ebcbe5ffbbc842ab042066ebae9ea, type: 2}
   m_sharedMaterial: {fileID: -1567855829574874353, guid: 6f5ebcbe5ffbbc842ab042066ebae9ea, type: 2}
