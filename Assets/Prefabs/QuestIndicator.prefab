@@ -69,7 +69,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -9072301827698758746, guid: 37f51973793c69a4ba548e3e9cabe49e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b798a9ecd05481d448238227d58653be, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111048261809516274}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d102e5cd050feac438340ff9cff920ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestIndicator
-  DeclineSprite: {fileID: -9072301827698758746, guid: 37f51973793c69a4ba548e3e9cabe49e, type: 3}
-  AcceptSprite: {fileID: 1348651768671927897, guid: df74e53622e5f874d9283f524c44ffc7, type: 3}
+  DeclineSprite: {fileID: 21300000, guid: b798a9ecd05481d448238227d58653be, type: 3}
+  AcceptSprite: {fileID: 21300000, guid: c2ab5b65b3d91b74796a35a4ff1fb69f, type: 3}
   QuestPresenterPrefab: {fileID: 8582811960714891087, guid: e617bc45bdf82fe45a98859d9984e32c, type: 3}
   _audioService: {fileID: 0}
   canvas: {fileID: 0}
