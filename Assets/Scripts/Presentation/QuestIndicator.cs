@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Domain;
 using Domain.Quests;
 using Presentation;
@@ -40,6 +41,7 @@ public class QuestIndicator : MonoBehaviour
         GetComponent<Image>().sprite = null;
         GetComponent<Image>().color = new Color(0, 0, 0, 0);
         GetComponent<FlipSprite>().Flip(DeclineSprite);
+        PlayManager.Instance.PlayCoordinator.OnAcceptedQuestsChanged += SetIndicator;
     }
     
     public void OnClick()
@@ -47,10 +49,12 @@ public class QuestIndicator : MonoBehaviour
         PlayManager.Instance.lastInteractedQuestPosition = GetComponent<RectTransform>().position;
     }
 
-    private void Toggle()
+    private void SetIndicator()
     {
-        _accepted = !_accepted;
-        GetComponent<Image>().sprite = _accepted ? AcceptSprite : DeclineSprite;
+        if (PlayManager.Instance.PlayCoordinator.GetAcceptedQuests().Contains(_quest))
+            Accept();
+        else
+            Decline();
     }
 
     public void Accept()

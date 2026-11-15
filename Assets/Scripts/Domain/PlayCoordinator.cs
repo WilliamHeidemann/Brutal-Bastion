@@ -21,6 +21,7 @@ namespace Domain
         public Action OnLivesChanged;
         public Action OnQuestsChanged;
         public Action OnModifiersChanged;
+        public Action OnAcceptedQuestsChanged;
 
         public void SetQuestsForTheDay(List<Quest> quests)
         {
@@ -36,6 +37,7 @@ namespace Domain
             _offeredQuests.Accept(quest);
             if (quest.Requirement != 0)
                 OnArmySizeChange?.Invoke();
+            OnAcceptedQuestsChanged?.Invoke();
         }
 
         public void Decline(Quest quest)
@@ -43,6 +45,7 @@ namespace Domain
             _offeredQuests.Decline(quest);
             if (quest.Requirement != 0)
                 OnArmySizeChange?.Invoke();
+            OnAcceptedQuestsChanged?.Invoke();
         }
 
         public void PassDay()
@@ -214,6 +217,7 @@ namespace Domain
         }
 
         public IEnumerable<Quest> GetOfferedQuests() => _offeredQuests.AllQuests;
+        public IEnumerable<Quest> GetAcceptedQuests() => _offeredQuests.AcceptedQuests;
         public List<Quest> GetActiveQuests() => _activeQuests.GetQuests();
 
         public bool IsQuestValid(QuestObject quest)

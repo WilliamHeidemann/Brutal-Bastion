@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using Presentation.Audio;
@@ -8,15 +9,16 @@ public class PhysicalButton : MonoBehaviour
     [SerializeField] private FmodAudioService _audioService;
     private void OnMouseDown()
     {   
-        if (_audioService != null)
+        OnClick.Invoke();
+        try
         {
             // Play the UI On Click (or change UISound.ThemeMusic to whatever sound enum you want)
             _audioService.Play(UISound.OnClickDrum);
         }
-        else
+        catch (Exception e)
         {
-            Debug.LogWarning("FmodAudioService reference is missing on " + gameObject.name, this);
+            Debug.LogWarning(e);
+            throw;
         }
-        OnClick.Invoke();
     }
 }

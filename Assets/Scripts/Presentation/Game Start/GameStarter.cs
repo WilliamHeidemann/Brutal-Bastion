@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -26,11 +27,16 @@ public class GameStarter : MonoBehaviour
     public void StartGame()
     {
         OnGameStart.Invoke();
+        StartCoroutine(StartRoutine());
+        try
         {
             _audioService.Play(UISound.ThemeMusic);
             _audioService.Stop(UISound.Ambient);
         }
-        StartCoroutine(StartRoutine());
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
     }
 
     private IEnumerator StartRoutine()
