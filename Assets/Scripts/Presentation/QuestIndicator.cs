@@ -49,6 +49,11 @@ public class QuestIndicator : MonoBehaviour
         PlayManager.Instance.lastInteractedQuestPosition = GetComponent<RectTransform>().position;
     }
 
+    private void OnDestroy()
+    {
+        PlayManager.Instance.PlayCoordinator.OnAcceptedQuestsChanged -= SetIndicator;
+    }
+
     private void SetIndicator()
     {
         if (PlayManager.Instance.PlayCoordinator.GetAcceptedQuests().Contains(_quest))
